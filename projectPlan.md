@@ -29,6 +29,6 @@ The purpose of final evaluation is to solicit participants' opinions of robo-adv
 
 ### Timeline
 
-/images/timeline.jpg
+/images/timeline.png
 
 ## Have-done list
