@@ -1,6 +1,6 @@
 # Robo-advisor project plan
 
-## To-do list
+## To-do list (for week1)
 ### Structure
 - To add two sub-stages (Wanlu)
 
