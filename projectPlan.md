@@ -9,9 +9,10 @@
 	- Scripts during main experiment
 
 - Consistent UI design (TBA)
+- Re-classify robo-advisor's financial performance based on S&P 500 or other widely recognised benchmarks (Yihan)
 
 ### Structure design
-- Orientation
+- Orientation (Wanlu)
 	- Input style
 		- Name: it's a choice, not fill_in_the_blank
 		- Avatar of robots: using three sample avatars (under /images fold) instead of uploading
@@ -19,13 +20,13 @@
 ### Feature refinement (ranked by priority)
 - Design several styles of avatar for robo-advisor (by graphic designer)
 
-- The conversation of robo-advisor needs to be accompanied with the corresponding avatar 
+- The conversation of robo-advisor needs to be accompanied with the corresponding avatar (Wanlu)
 
 - Demo showcase
-	- Replace the slider with a pie chart to make it more intuitive to understand (illustrated in ppt, feature refinement section)
+	- Replace the slider with a pie chart to make it more intuitive to understand (illustrated in ppt, feature refinement section) (graphic designer/wanlu)
 
 - Main experiment
-	- Time interval, 12 months instead of 24
+	- Time interval, 12 months instead of 24  
 
 ### Timeline
 
