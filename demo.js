@@ -7,6 +7,13 @@ slider.oninput = function() {
     output.innerHTML = this.value;
 }
 
+var performance_slider = document.getElementById("performance_slider");
+var performance_value = document.getElementById("performance_value");
+performance_value.innerHTML = performance_slider.value;
+performance_slider.oninput = function(){
+    performance_value.innerHTML = performance_slider.value;
+}
+
 var monthIndex = 0;
 var totalInterval = 24;
 var startY = 2016, startM = 1;
@@ -28,9 +35,13 @@ for (i=0; i<totalInterval; i++){
     startM += 1;
 }
 
+var performanceLevels = ["low", "medium", "high"];
+var randInt = Math.floor(Math.random() * 3);
+document.getElementById("level").innerHTML = performanceLevels[randInt];
+
 var chart = new CanvasJS.Chart("chartContainer", {
     title :{
-        text: "Robo-Advisor"
+        text: "Investment returns over time"
     },
     axisX: {
         title: "Time horizon", 
@@ -57,9 +68,6 @@ chart.render();
 
 var robo = []   
 var base = get_returns(base_mean, 0) // Fixed: annualized return
-var performanceLevels = ["low", "medium", "high"];
-var randInt = Math.floor(Math.random() * 3);
-document.getElementById("level").innerHTML = performanceLevels[randInt];
 switch(randInt) {
     case 0 : robo = get_returns(low_mean, low_var); break; // Low: annualized return = 6% +- 4%
     case 1 : robo = get_returns(medium_mean, medium_var); break; // Medium: annualized return = 10% +- 4%
@@ -113,8 +121,8 @@ function get_returns(mean, sd){
 
 function confirm(){
     if (monthIndex >= totalInterval) {
-        alert("Finish the showcase demo!");
-        save();
+        document.getElementById("demo").style.display = 'none';
+        document.getElementById("demo-eval").style.display = 'block';
         return;
     }
 
@@ -147,13 +155,15 @@ function confirm(){
 }
 
 function save(){
+    console.log("manipulation" + performance_slider.value);
     // save the necessary info for later reference
     // jsnObj = {
+    //     "manipulation" = performance_slider.value; 
     //     "performance level":performanceLevels[randInt],
     //     "robo-advisor monthly gain":roboMonthGainLst,
     //     "bank deposit monthly gain":bankMonthGainLst,
     //     "total gain":totalLst,
     //     "user selected ranges":rangeLst
     // };
-   
+    document.location.href = './exp.html';
 }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Robo-Advisor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+
+<body>
+    <div class="stage">
+        <p>Stage 3 - Main Experience</p>
+    </div>
+    <div class="container" id="exp">
+        <div id="chartContainer" style="height: 370px; width:100%;"></div>
+
+        <div class="dashboard">
+            <div style="float:left; width:40%">
+                <p style="font-size:20px; font-weight:bold">Summary</p>
+                <hr>
+                <p>Performance Level: <span id="level"></span></p>
+                <p>Total Return: <span id="return"></span></p>
+                <p>Robo-Advisor Monthly Gain: <span id="rMGain"></span></p>
+                <p>Bank Deposit Monthly Gain: <span id="bMGain"></span></p>
+                <p id="comparison" style="color:#cc0000; text-decoration:underline"></p>
+            </div>
+            <div class="slidecontainer">
+                <p>Robo-Advisor: <span id="range" style="font-weight: bold"></span>%</p>
+                <input type="range" min="1" max="100" value="50" class="slider" id="mySlider">
+                <button class="btn" onclick="confirm()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="final-eval" style="display:none">
+            <p>
+                Now you have worked with your robo-advisor <span id="robo-name"></span> for another round, 
+                now do you think of its performance differently? 
+                Please update us with your current opinion using the following slider 
+                to indicate your answer (0 = poor, 10 = excellent).
+            </p>
+            <div>
+                <div class="mark-bar" style="background-color: #cc0000">Poor - Average</div>
+                <div class="mark-bar" style="background-color:darkorange">Average - Good</div>
+                <div class="mark-bar" style="background-color:darkgreen">Good - Excellent</div>
+            </div>
+            <input type="range" min="1" max="10" value="5" class="slider" id="performance_slider">
+            <p>Selected value: <span id="performance_value" style="font-weight: bold"></span></p>
+            <br>
+            <p>
+                If we were to officially launch the robo-advisor <span id="robo-name"></span>, 
+                would you like to use it for wealth management? (0 = not likely, 10 = very likely)
+                </p>
+                <div>
+                    <div class="mark-bar" style="width:50%; background-color: #cc0000">Negative</div>
+                    <div class="mark-bar" style="width:50%; background-color:darkgreen">Positive</div>
+                </div>
+                <input type="range" min="1" max="10" value="5" class="slider" id="preference_slider">
+                <p>Selected value: <span id="preference_value" style="font-weight: bold"></span></p>
+            <button class="btn" onclick="save()">Finish</button>
+        </div>
+
+    <script src="exp.js"></script>
+</body>
+</html>
