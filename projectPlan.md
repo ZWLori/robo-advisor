@@ -11,11 +11,15 @@
 - Re-classify robo-advisor's financial performance based on S&P 500 or other widely recognised benchmarks (Yihan)
 
 ### Structure design
-- Google cloud set up (wanlu)
+- Google cloud set up (wanlu) or x10host
 - Orientation (Wanlu)
 	- Input style
 		- Name: it's a choice, not fill_in_the_blank
 		- Avatar of robots: using three sample avatars (under /images folder) instead of uploading
+
+### Debugging
+- The condition assignment needs to be consistent, e.g. those randomly assigned to high performance during demo stage shall also be assigned to high performance during main experiment (wanlu)
+
 
 ### Feature refinement (ranked by priority)
 - Design several styles of avatar for robo-advisor (by graphic designer)
