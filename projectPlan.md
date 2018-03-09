@@ -3,35 +3,37 @@
 ## To-do list (for week1~2)
 
 ### Content development
-- Conversational scripts (Yihan + Cuimin)
+- (Yihan + Cuimin) Conversational scripts 
 	- Scripts during orientation
 	- Scripts during main experiment
 
-- Consistent UI design (TBA)
+- (Yihan) Draft the conceptual algorithm for incentive calculator, which calculates participants' pay based on their performance during the main experiment 
+
+- (Stella) Consistent UI design 
 
 
 ### Structure design 
-- Google cloud set up (wanlu) or x10host
-- Orientation (Wanlu)
+- (wanlu) Google cloud set up (or x10host)
+- (Wanlu) Orientation 
 	- Input style
 		- Name: it's a choice, not fill_in_the_blank
 		- Avatar of robots: using three sample avatars (under /images folder) instead of uploading
-- Revise the parameters of robo-advisor's past performance based on Yihan's simulation of historical results (refer to the file performance_parameters.R, section 8) - Wanlu
+- (Wanlu) Revise the parameters of robo-advisor's past performance based on Yihan's simulation of historical results (refer to the file performance_parameters.R, section 8) 
+- (Wanlu) Introduce a "crisis" to the main experiment 
+	- During the normal period (12 months), the robo-advisor's performance is the same as the demo period
+	- After the 12 months, there's a crisis (lasts for 3 months), where the performance dropped 10% in the 13th month, and then performance resumes normal during the 14th and 15th month.
 
 ### Debugging
-- The condition assignment needs to be consistent, e.g. those randomly assigned to high performance during demo stage shall also be assigned to high performance during main experiment (wanlu)
+- (Wanlu) The condition assignment needs to be consistent, e.g. those randomly assigned to high performance during demo stage shall also be assigned to high performance during main experiment 
 
 
 ### Feature refinement (ranked by priority)
-- Design several styles of avatar for robo-advisor (by graphic designer)
+- (Stella) Design several styles of avatar for robo-advisor  
 
-- The conversation of robo-advisor needs to be accompanied with the corresponding avatar (Wanlu)
+- (Stella) The conversation of robo-advisor needs to be accompanied with the corresponding avatar 
 
-- Demo showcase
-	- Replace the slider with a pie chart to make it more intuitive to understand (illustrated in ppt, feature refinement section) (graphic designer/wanlu)
-
-- Main experiment
-	- Time interval, 12 months instead of 24  
+- Demo showcase & main experiment
+	- (Stella) Replace the slider with a pie chart to make it more intuitive to understand (illustrated in ppt, feature refinement section)  
 
 ### Timeline
 
