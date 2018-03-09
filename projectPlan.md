@@ -8,14 +8,15 @@
 	- Scripts during main experiment
 
 - Consistent UI design (TBA)
-- Re-classify robo-advisor's financial performance based on S&P 500 or other widely recognised benchmarks (Yihan)
 
-### Structure design
+
+### Structure design 
 - Google cloud set up (wanlu) or x10host
 - Orientation (Wanlu)
 	- Input style
 		- Name: it's a choice, not fill_in_the_blank
 		- Avatar of robots: using three sample avatars (under /images folder) instead of uploading
+- Revise the parameters of robo-advisor's past performance based on Yihan's simulation of historical results (refer to the file performance_parameters.R, section 8) - Wanlu
 
 ### Debugging
 - The condition assignment needs to be consistent, e.g. those randomly assigned to high performance during demo stage shall also be assigned to high performance during main experiment (wanlu)
@@ -37,6 +38,8 @@
 ![timeline](/images/timeline.png)
 
 ## Have-done list
+- Re-classify robo-advisor's financial performance based on S&P 500 or other widely recognised benchmarks (Yihan) (✓)
+
 - To add two sub-stages (Wanlu) (✓)
 
 		1. Manipulation check stage (✓)
