@@ -27,7 +27,7 @@ end_date = "2017-12-31" # 20 years in total
 
 ## 3. Write functions for data cleaning
 
-load_Data = function(symbol,type = "index"){
+load_Data = function(symbol,type = "index"){ # default is index
     # this function returns the monthly log return, the default type is "index"
 	if (type == "bond"){ # for bond, there is no need to calculate log return
 		data = quantmod::getSymbols(symbol,auto.assign = FALSE,from = start_date, to = end_date)
@@ -35,7 +35,6 @@ load_Data = function(symbol,type = "index"){
 		data_return = na.omit(data_return)
 		data_return_m = xts::apply.monthly(data_return,mean)
 		data_return_m = data_return_m/12 # to convert annualized bond return to monthly return
-		# return the value
 	} else if (type == "index"){
 		data = quantmod::getSymbols(symbol,auto.assign = FALSE,from = start_date, to = end_date)
 		data_adjusted = data[,6] # adjusted for dividend and share split
@@ -115,17 +114,16 @@ tnx_mr
 tnx_vl
 
 ## 5. Run several scenarios, with different weights of index and bonds
-### Suppose the portfolio is made up only US markets,
+### Suppose the portfolio is made up of only US markets,
 ### and the weights for index and bond are 50:50
 
 weight_index =c(1/3,1/3,1/3) # equal weight of three U.S. indexes
 weight_portfolio = c(1/2,1/2) # equal weight of equity and bond
 
 index_return = cbind(sp500, nasdaq, rus2000)
-
 weighted_index_return = rowSums(index_return*weight_index) # average index return
-mean_index_mr = mean(weighted_index_return)
-mean_index_vl = sd(weighted_index_return) # average index return
+mean_index_mr = mean(weighted_index_return) # mean of weighted index return
+mean_index_vl = sd(weighted_index_return) # weighted index volatility
 
 
 portfolio_return = cbind(weighted_index_return, tnx) # 50% equity & 50% bond
@@ -145,9 +143,6 @@ mean_portfolio_mr # value = 0.4526403
 
 ### The mean monthly volatility (risk) is :
 mean_portfolio_vl # value =  2.661148
-
-### Quantile the weighted_index_return
-quantile(weighted_portfolio_return, c(.1, .2, .3, .4, .5, .6, .7, .8, .9))
 
 
 ## 7. Simulate performance, then decide the cut-off points based on simulations
