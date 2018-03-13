@@ -23,7 +23,7 @@ preference_slider.oninput = function(){
 
 
 var monthIndex = 0;
-var totalInterval = 24;
+var totalInterval = 12;
 var startY = 2016, startM = 1;
 var principle = totalGain = 10000;
 var low_mean = 0.25, low_var = 2;
@@ -52,12 +52,12 @@ var chart = new CanvasJS.Chart("chartContainer", {
         text: "Investment returns over time"
     },
     axisX: {
-        title: "Time horizon", 
+        title: "Time horizon",
     },
     axisY: {
         title: "Cumulative Returns",
         includeZero: false
-    },      
+    },
     data: [{
             type: "line",
             showInLegend: true,
@@ -74,7 +74,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 });
 chart.render();
 
-var robo = []   
+var robo = []
 var base = get_returns(base_mean, 0) // Fixed: annualized return
 switch(randInt) {
     case 0 : robo = get_returns(low_mean, low_var); break; // Low: annualized return = 6% +- 4%
@@ -105,14 +105,14 @@ function normal_random(n, mean, variance) {
             V2 = 2 * U2 - 1;
             S = V1 * V1 + V2 * V2;
         } while (S > 1);
-    
+
         X = Math.sqrt(-2 * Math.log(S) / S) * V1;
         //  Y = Math.sqrt(-2 * Math.log(S) / S) * V2;
         X = mean + Math.sqrt(variance) * X;
         //  Y = mean + Math.sqrt(variance) * Y ;
         result.push(X);
     }
-    
+
     return result;
 }
 
@@ -135,7 +135,7 @@ function confirm(){
     }
 
     range = slider.value;
-    updateChart(monthIndex); 
+    updateChart(monthIndex);
 
     // gain = corrsponding percentage * previous totalGain * gainRatio
     if (monthIndex == 0) {
@@ -168,7 +168,7 @@ function save(){
     // TODO: check page content for storing the corresponding info
     // save the necessary info for later reference
     // jsnObj = {
-    //     "manipulation" = performance_slider.value; 
+    //     "manipulation" = performance_slider.value;
     //     "preference" = preference_slider.value;
     //     "performance level":performanceLevels[randInt],
     //     "robo-advisor monthly gain":roboMonthGainLst,

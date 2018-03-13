@@ -20,7 +20,7 @@
 		- Avatar of robots: using three sample avatars (under /images folder) instead of uploading
 - (Wanlu) Revise the parameters of robo-advisor's past performance based on Yihan's simulation of historical results (refer to the file performance_parameters.R, section 8) 
 - (Wanlu) Introduce a "crisis" to the main experiment 
-	- During the normal period (12 months), the robo-advisor's performance is the same as the demo period
+	- During the normal period (12 months), the robo-advisor's performance is the same as the demo period (✓)
 	- After the 12 months, there's a crisis (lasts for 3 months), where the performance dropped 10% in the 13th month, and then performance resumes normal during the 14th and 15th month.
 
 ### Debugging
