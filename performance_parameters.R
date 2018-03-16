@@ -182,13 +182,13 @@ var = mean_portfolio_vl #2.661148
 
 # 8. Summarizing the variable values for demo and main experiments
 
-high_mean = 1.158
-medium_mean = 0.452
-low_mean = -0.003
-base_mean = 0.125
-high_var = 2.661
-medium_var = 2.661
-low_var = 2.661
+# high_mean = 1.158
+# medium_mean = 0.452
+# low_mean = -0.003
+# base_mean = 0.125
+# high_var = 2.661
+# medium_var = 2.661
+# low_var = 2.661
 
 # 9. Incentives schemes for participants
 ## This function calculates the simulated returns for different scenarios
@@ -237,16 +237,20 @@ high_cutoffs
 
 ### Incentive criteria (rounded to integer)
 base = 5
-# 0 - 10% percentile: base
-# 11 - 20% percentile: base*1.2
-# 21 - 30% percentile: base*1.3
-# 31 - 40% percentile: base*1.4
-# 41 - 50% percentile: base*1.5
-# 51 - 60% percentile: base*1.6
-# 61 - 70% percentile: base*2
-# 71 - 80% percentile: base*3
-# 81 - 90% percentile: base*4
-# 91 - 100% percentile: base*5
+# When performance quantile is between 0 - 10%:
+	# Incentive = base
+# When performance quantile is between 10 - 60%:
+	# Incentive = base * (1+percentile), e.g.:
+		# 10 - 20% percentile: base*1.2
+		# 20 - 30% percentile: base*1.3
+		# 30 - 40% percentile: base*1.4
+		# 40 - 50% percentile: base*1.5
+		# 50 - 60% percentile: base*1.6
+# When performance quantile is between 60 - 95%:
+	# Incentive = base * (1+percentile)^2 // square
+
+# When performance quantile is between 95 - 100%:
+	# Incentive = base * (1+percentile)^3 // cubic squares
 
 ### Summary of cut-off points
 
