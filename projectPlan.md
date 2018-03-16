@@ -9,6 +9,9 @@
 
 - (Stella) Consistent UI design 
 
+- (Stella) The design of chatbot can be adopted from 
+[zhangwanli](zhangwenli.com), following this [repo address](https://github.com/Ovilia/ovilia.github.io)
+
 
 ### Structure design 
 - (wanlu) Google cloud set up (or x10host)
