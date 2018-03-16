@@ -36,7 +36,7 @@ Net Asset Value: $ cumulative_returns
   
 | Net Asset Value | past month |past 3 month|past 6 month|
 |---|---|---|---|
-| Your portfolio | $X^1 | X | X|
+| Your portfolio | $X[^1] | X | X|
 | 100% invested in robo-advisor | X | X | X|
 | 100% invested in savings account | X | X | X|
 
