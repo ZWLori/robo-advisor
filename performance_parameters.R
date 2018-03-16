@@ -235,17 +235,18 @@ high_cutoffs = quantile(high_performance , c(.1, .2, .3, .4, .5, .6, .7, .8, .9)
 high_cutoffs
 
 
-### Incentive criteria
-base = 4
-# 0 - 20% percentile: base + $1
-# 21 - 30% percentile: base + $2
-# 31 - 40% percentile: base + $3
-# 41 - 50% percentile: base + $4
-# 51 - 60% percentile: base + $5
-# 61 - 70% percentile: base + $6
-# 71 - 80% percentile: base + $11
-# 81 - 90% percentile: base + $16
-# 91 - 100% percentile: base + $21
+### Incentive criteria (rounded to integer)
+base = 5
+# 0 - 10% percentile: base
+# 11 - 20% percentile: base*1.2
+# 21 - 30% percentile: base*1.3
+# 31 - 40% percentile: base*1.4
+# 41 - 50% percentile: base*1.5
+# 51 - 60% percentile: base*1.6
+# 61 - 70% percentile: base*2
+# 71 - 80% percentile: base*3
+# 81 - 90% percentile: base*4
+# 91 - 100% percentile: base*5
 
 ### Summary of cut-off points
 
