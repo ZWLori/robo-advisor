@@ -145,7 +145,7 @@ mean_portfolio_mr # value = 0.4526403
 mean_portfolio_vl # value =  2.661148
 
 
-## 7. Simulate performance, then decide the cut-off points based on simulations
+## 7. Simulate robo-advisor's performance, then decide the cut-off points based on simulations
 
 investment_period = 24
 simulations = 0
@@ -190,5 +190,100 @@ high_var = 2.661
 medium_var = 2.661
 low_var = 2.661
 
+# 9. Incentives schemes for participants
+## This function calculates the simulated returns for different scenarios
+saving_returns = interest_rate*investment_horizon
+
+simulate_performance = function(monthly_return,investment_horizon,var, n) {
+	# simulating robo-advisor's performance, n denotes No. of simulations
+	set.seed(123456)
+	robo_simulations = 0 # initiate empty vector
+	for(i in 1:n) {
+	  performance = cumsum(rnorm(investment_horizon, monthly_return, var))
+	  cum_performance = performance[investment_horizon] # overall performance by the final period
+	  robo_simulations[i] <- cum_performance
+	}
+	robo_simulations # return vector values
+
+	# simulating weight-adjusted performance between robo and saving account
+	weight = 100 # the weight varies from 1% to 100%
+	total_simulations = matrix(0, nrow = 100, ncol = n)
+
+	for (i in 0:100){
+	  total_simulations[i,] = robo_simulations*i/100 + saving_returns*(100-i)/100
+	}
+	total_simulations
+}
+
+### Investment horizon for main experiment
+investment_horizon = 12
+interest_rate = 2/12
+
+### Low-performance group
+low_performance = simulate_performance(low_mean, investment_horizon, low_var,10000)
+low_cutoffs = quantile(low_performance , c(.1, .2, .3, .4, .5, .6, .7, .8, .9))
+low_cutoffs
+
+### Medium-performance group
+medium_performance = simulate_performance(medium_mean, investment_horizon, medium_var, 10000)
+medium_cutoffs = quantile(medium_performance , c(.1, .2, .3, .4, .5, .6, .7, .8, .9))
+medium_cutoffs
+
+### High-performance group
+high_performance = simulate_performance(high_mean, investment_horizon, high_var, 10000)
+high_cutoffs = quantile(high_performance , c(.1, .2, .3, .4, .5, .6, .7, .8, .9))
+high_cutoffs
 
 
+### Incentive criteria
+base = 4
+# 0 - 20% percentile: base + $1
+# 21 - 30% percentile: base + $2
+# 31 - 40% percentile: base + $3
+# 41 - 50% percentile: base + $4
+# 51 - 60% percentile: base + $5
+# 61 - 70% percentile: base + $6
+# 71 - 80% percentile: base + $11
+# 81 - 90% percentile: base + $16
+# 91 - 100% percentile: base + $21
+
+### Summary of cut-off points
+
+# -----------------------------------------------------------------------------------
+# > low_cutoffs
+# 10%        20%        30%        40%        50%        60%        70%
+# -5.5467974 -2.5195815 -0.6626316  0.6107510  1.5078318  2.0771923  2.8745512
+# 80%        90%
+#   4.3143522  7.0121577
+
+# > medium_cutoffs
+# 10%       20%       30%       40%       50%       60%       70%       80%
+#   -1.912314  0.442828  1.622759  2.202695  2.947375  3.982879  5.399530  7.411935
+# 90%
+# 10.713197
+
+# > high_cutoffs
+# 10%       20%       30%       40%       50%       60%       70%       80%
+#   2.059108  2.885755  3.906269  5.115775  6.518824  8.189085 10.246733 12.942468
+# 90%
+# 17.007296
+#-----------------------------------------------------------------------------------
+
+#
+# # Special scenario: consistent equal weight between robo and savings
+# simulate_performance = function(monthly_return,investment_horizon,var,interest_rate, n) {
+# 	set.seed(123456)
+# 	# simulated returns from robo-advisor
+#     robo_simulations = 0
+# 	for(i in 1:n) {
+# 	  performance = cumsum(rnorm(n=investment_horizon, mean=monthly_return, sd=var))
+# 	  cum_performance = performance[investment_horizon] # overall performance by the final period
+# 	  robo_simulations[i] <- cum_performance
+# 	}
+#   # simulated returns from savings account
+#   saving_simulations = interest_rate*investment_horizon
+#   # weight-adjusted simulations: robo-advisor vs. savings_account 50%: 50%
+#   simulations = (robo_simulations + saving_simulations)/2
+#   simulations
+# }
+#

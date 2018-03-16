@@ -7,13 +7,12 @@
 	- Scripts during orientation
 	- Scripts during main experiment
 
-- (Yihan) Draft the conceptual algorithm for incentive calculator, which calculates participants' pay based on their performance during the main experiment 
-
 - (Stella) Consistent UI design 
 
 
 ### Structure design 
 - (wanlu) Google cloud set up (or x10host)
+- (wanlu) At the end of the experiment, display the overall incentives that participants earn. The algorithms and data are elaborated in file \performance_parameters.R, section 9
 - (Wanlu) Orientation 
 	- Input style
 		- Name: it's a choice, not fill_in_the_blank
@@ -34,7 +33,7 @@
 Deposit : $ deposit <br>
 Net Asset Value: $ cumulative_returns
   
-| Net Asset Value | past month |past 3 month|past 6 month|
+| Net Asset Value | past 1 month |past 3 months|past 6 months|
 |---|---|---|---|
 | Your portfolio | $X [^1] | X | X|
 | 100% invested in robo-advisor | X | X | X|
@@ -66,6 +65,9 @@ Net Asset Value: $ cumulative_returns
 ![timeline](/images/timeline.png)
 
 ## Have-done list
+
+- (Yihan) Draft the conceptual algorithm for incentive calculator, which calculates participants' pay based on their performance during the main experiment (✓)
+
 - Re-classify robo-advisor's financial performance based on S&P 500 or other widely recognised benchmarks (Yihan) (✓)
 
 - To add two sub-stages (Wanlu) (✓)
