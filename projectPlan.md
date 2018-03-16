@@ -20,9 +20,9 @@
 		- Avatar of robots: using three sample avatars (under /images folder) instead of uploading
 - (Wanlu) Revise the parameters of robo-advisor's past performance based on Yihan's simulation of historical results (refer to the file performance_parameters.R, section 8) 
 - (Wanlu) Revise the content of chart & summary sheet of robo-advisor's past performance. (Stella) The animation effect of the unfolding of x-axis.
-	- Chart 
+- Chart 
 
-	| | content | presentation  |
+	|Table1 | content | presentation  |
 |:--|:--|:--|
 | x-axis | time-horizon | gradually unfolds as time passes, so that the x-axis ends with the current month|
 |  y-axis |  title: "Net Asset Value" | line-charts, holding the upper and lower limit constant. Upper: 1.5 times the deposit, Lower limit: 0.9 times the deposit |
@@ -30,12 +30,9 @@
 |  y-2 | legend:  100% invested in robo-advisor| line-chart (color A) |
 |  y-3 | legend: 100% invested in savings account | line-chart (color B) |
 
-
-    - Summary sheet
-    
-		Deposit : $ deposit
-		
-		  Net Asset Value: $ cumulative_returns
+- Summary sheet <br>
+Deposit : $ deposit <br>
+Net Asset Value: $ cumulative_returns
   
 	| Net Asset Value | past month |past 3 month|past 6 month|
 |:--|:--|:--|:--|
