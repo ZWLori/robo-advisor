@@ -147,11 +147,12 @@ mean_portfolio_vl # value =  2.661148
 
 ## 7. Simulate robo-advisor's performance, then decide the cut-off points based on simulations
 
-investment_period = 24
+investment_period = 2
+n_simulations = 10000
 simulations = 0
 
 set.seed(123456)
-for(i in 1:10000) {
+for(i in 1:n_simulations) {
   performance = cumsum(rnorm(n=investment_period, mean=mean_portfolio_mr, sd=mean_portfolio_vl))
   cum_performance = performance[investment_period] # overall performance by the final period
   simulations[i] <- cum_performance
@@ -191,9 +192,16 @@ var = mean_portfolio_vl #2.661148
 # low_var = 2.661
 
 # 9. Incentives schemes for participants
-## This function calculates the simulated returns for different scenarios
+
+## Investment horizon for main experiment
+investment_horizon = 12
+interest_rate = 2/12
+
+## Returns from savings account
 saving_returns = interest_rate*investment_horizon
 
+## Simulated returns of robo-advisors by past performance
+## This function calculates the simulated returns for different scenarios
 simulate_performance = function(monthly_return,investment_horizon,var, n) {
 	# simulating robo-advisor's performance, n denotes No. of simulations
 	set.seed(123456)
@@ -215,22 +223,18 @@ simulate_performance = function(monthly_return,investment_horizon,var, n) {
 	total_simulations
 }
 
-### Investment horizon for main experiment
-investment_horizon = 12
-interest_rate = 2/12
-
 ### Low-performance group
-low_performance = simulate_performance(low_mean, investment_horizon, low_var,10000)
+low_performance = simulate_performance(low_mean, investment_horizon, low_var, n_simulations)
 low_cutoffs = quantile(low_performance , c(.1, .2, .3, .4, .5, .6, .7, .8, .9))
 low_cutoffs
 
 ### Medium-performance group
-medium_performance = simulate_performance(medium_mean, investment_horizon, medium_var, 10000)
+medium_performance = simulate_performance(medium_mean, investment_horizon, medium_var, n_simulations)
 medium_cutoffs = quantile(medium_performance , c(.1, .2, .3, .4, .5, .6, .7, .8, .9))
 medium_cutoffs
 
 ### High-performance group
-high_performance = simulate_performance(high_mean, investment_horizon, high_var, 10000)
+high_performance = simulate_performance(high_mean, investment_horizon, high_var, n_simulations)
 high_cutoffs = quantile(high_performance , c(.1, .2, .3, .4, .5, .6, .7, .8, .9))
 high_cutoffs
 
