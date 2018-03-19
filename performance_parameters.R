@@ -162,17 +162,17 @@ quantile(simulations, c(.1, .2, .3, .4, .5, .6, .7, .8, .9))
 
 # High perfomance is defined as 90% percentile of the cumulative return during the given period
 high_performance = quantile(simulations, 0.9)
-high_mean = high_performance/24 # to calculate the monthly return
+high_mean = high_performance/investment_period # to calculate the monthly return
 high_mean # 1.158315
 
 # Medium performance is defined as 50% percentile of the cumulative return during the given period
 medium_performance = quantile(simulations, 0.5)
-medium_mean = medium_performance/24
+medium_mean = medium_performance/investment_period
 medium_mean # 0.4517913
 
 # Low performance is defined as 20% percentile of the the cumulative return during the given period
 low_performance = quantile(simulations, 0.2)
-low_mean = low_performance/24
+low_mean = low_performance/investment_period
 low_mean # -0.003010246
 
 # Base rate: Federal funds rate
