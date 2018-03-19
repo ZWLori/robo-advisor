@@ -147,7 +147,7 @@ mean_portfolio_vl # value =  2.661148
 
 ## 7. Simulate robo-advisor's performance, then decide the cut-off points based on simulations
 
-investment_period = 2
+investment_period = 24
 n_simulations = 10000
 simulations = 0
 
