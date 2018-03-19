@@ -11,8 +11,12 @@
         <div class="stage">
             <p>Stage 1 - User Orientation</p>
         </div>
-        <div class="container" id="attribute-form">
-            Name: <input id="name" type="text">
+        <div class="container" id="attribute-form" style="text-align:center">
+            Name: 
+            <select id="name">
+                <option value="Warren">Warren</option>
+                <option value="Tom">Tom</option>
+            </select>
             <br>
             Gender: 
             <select id="gender">
@@ -21,19 +25,11 @@
                 <option value="neutral">Neutral</option>
             </select>
             <br>
-            Potfolio picture: <input type="file" id="pic" accept="image/*">
-            <br>
+
             Conversational style:
             <select id="conv-style">
                 <option value="controlling">Controlling </option>
                 <option value="submissive">Submissive</option>
-            </select>
-            <br>
-            Performance level:
-            <select id="performance-level">
-                <option value="high">High </option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
             </select>
             <br>
             <button class="btn" onclick="get_attrs()">Save</button>

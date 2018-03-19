@@ -15,52 +15,66 @@ performance_slider.oninput = function(){
 }
 
 var monthIndex = 0;
-var totalInterval = 24;
+var totalInterval = 12;  // Investment horizon
 var startY = 2016, startM = 1;
 var principle = totalGain = 10000;
-var low_mean = 0.25, low_var = 2;
-var medium_mean = 0.8125, medium_var = 4;
-var high_mean = 1.5, high_var = 4;
-var base_mean = 0.25;
-var roboMonthGainLst = [], bankMonthGainLst = [], totalLst = [], rangeLst = []; // for data record purpose, not in use now
+var low_mean = -0.03, low_var = 2.661;
+var medium_mean = 0.452, medium_var = 2.661;
+var high_mean = 1.158, high_var = 2.661;
+var base_mean = 0.125;
+var rangeLst = []; // store the user selected range value
+var robo = [] // the returns from robo-advisor 
+var base = get_returns(base_mean, 0) // Fixed: annualized return
+var user = [] // the returns for user TODO: fill-in the list
 // datapoints
-var dps = [], dps_base = [];
+var dps_user = [], dps_base = [], dps_robo = [];
+
 for (i=0; i<totalInterval; i++){
     if (startM % 12 == 0){
         startY += 1;
         startM = 1;
     }
-    dps.push({x:new Date(startY, startM-1)});
+    dps_user.push({x:new Date(startY, startM-1)});
     dps_base.push({x:new Date(startY, startM-1)});
+    dps_robo.push({x:new Date(startY, startM-1)})
     startM += 1;
 }
 
-var performanceLevels = ["low", "medium", "high"];
-var randInt = Math.floor(Math.random() * 3);
-document.getElementById("level").innerHTML = performanceLevels[randInt];
+
+var performanceLevelInt = Math.floor(Math.random() * 3);
+// performance level: 0 - "low", 1 - "medium", 2 -"high"
+sessionStorage.setItem("performanceLevel", performanceLevelInt);
+console.log("performance level: " + performanceLevelInt);
 
 var chart = new CanvasJS.Chart("chartContainer", {
     title :{
         text: "Investment returns over time"
     },
     axisX: {
-        title: "Time horizon", 
+        title: "Time Horizon", 
     },
     axisY: {
-        title: "Cumulative Returns",
+        title: "Net Asset Value",
         includeZero: false
     },      
     data: [{
             type: "line",
             showInLegend: true,
-            legendText: "Robo-Advisor",
-            dataPoints: dps
+            legendText: "Robo Advisor",
+            dataPoints: dps_robo
         },
         {
             type: "line",
             showInLegend: true,
             legendText: "Bank Deposit",
             dataPoints: dps_base
+        },
+        {
+            type: "line",
+            showInLegend: true,
+            legendText: "Your Potfolio",
+            dataPoints: dps_user,
+            borderWidth: 2 
         }
     ]
 });
@@ -68,7 +82,7 @@ chart.render();
 
 var robo = []   
 var base = get_returns(base_mean, 0) // Fixed: annualized return
-switch(randInt) {
+switch(performanceLevelInt) {
     case 0 : robo = get_returns(low_mean, low_var); break; // Low: annualized return = 6% +- 4%
     case 1 : robo = get_returns(medium_mean, medium_var); break; // Medium: annualized return = 10% +- 4%
     case 2 : robo = get_returns(high_mean, high_var); break; // High: annualized return = 18% +- 4%
@@ -76,8 +90,9 @@ switch(randInt) {
 
 // update the chart with corresponding return values
 function updateChart(index) {
-    dps[index]["y"] = robo[index];
+    dps_robo[index]["y"] = robo[index];
     dps_base[index]["y"] = base[index];
+    dps_user[index]["y"] = user[index];
     chart.render();
 };
 
@@ -127,30 +142,38 @@ function confirm(){
     }
 
     range = slider.value;
-    updateChart(monthIndex); 
 
     // gain = corrsponding percentage * previous totalGain * gainRatio
+    // monthly gain earned by robo & bank respectively
     if (monthIndex == 0) {
         rMGain = range * 0.01 * totalGain * (robo[monthIndex] / principle - 1) ;
-        bMGain = (1 - range * 0.01)  * totalGain * (base[monthIndex] / principle - 1);
+        bMGain = range * 0.01 * totalGain * (base[monthIndex] / principle - 1);
     } else {
         rMGain = range * 0.01 * totalGain * (robo[monthIndex] / robo[monthIndex-1] - 1);
         bMGain = (1 - range * 0.01)  * totalGain * (base[monthIndex] / base[monthIndex-1] - 1);
     }
-    document.getElementById("rMGain").innerHTML = Math.round(rMGain*100)/100;
-    document.getElementById("bMGain").innerHTML = Math.round(bMGain*100)/100;
 
     totalGain = totalGain + rMGain + bMGain;
     margin = totalGain - principle;
-    document.getElementById("return").innerHTML = Math.round(totalGain*100)/100;
+    document.getElementById("total-return").innerHTML = Math.round(totalGain*100)/100;
 
-    document.getElementById("comparison").innerHTML = "(placehoder) Robo-Advisor outperforms Bank Deposit"; // to be changed
-
-    roboMonthGainLst.push(rMGain);
-    bankMonthGainLst.push(bMGain);
-    totalLst.push(totalGain);
+    user.push(totalGain);
     rangeLst.push(range);
+    updateChart(monthIndex);
 
+    if (monthIndex == 0) {
+        document.getElementById("1m-robo").innerHTML = Math.round(robo[monthIndex]*100)/100;
+        document.getElementById("1m-base").innerHTML = Math.round(base[monthIndex]*100)/100;
+        document.getElementById("1m-user").innerHTML = Math.round(user[monthIndex]*100)/100;
+    } else if (monthIndex == 2) {
+        document.getElementById("3m-robo").innerHTML = Math.round(robo[monthIndex]*100)/100;
+        document.getElementById("3m-base").innerHTML = Math.round(base[monthIndex]*100)/100;
+        document.getElementById("3m-user").innerHTML = Math.round(user[monthIndex]*100)/100;
+    } else if (monthIndex == 5) {
+        document.getElementById("6m-robo").innerHTML = Math.round(robo[monthIndex]*100)/100;
+        document.getElementById("6m-base").innerHTML = Math.round(base[monthIndex]*100)/100;
+        document.getElementById("6m-user").innerHTML = Math.round(user[monthIndex]*100)/100;
+    }
     monthIndex += 1;
 }
 
@@ -159,7 +182,7 @@ function save(){
     // save the necessary info for later reference
     // jsnObj = {
     //     "manipulation" = performance_slider.value; 
-    //     "performance level":performanceLevels[randInt],
+    //     "performance level":performanceLevelInt,
     //     "robo-advisor monthly gain":roboMonthGainLst,
     //     "bank deposit monthly gain":bankMonthGainLst,
     //     "total gain":totalLst,

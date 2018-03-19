@@ -15,21 +15,43 @@
     </div>
     <div class="container" id="exp">
         <div id="chartContainer" style="height: 370px; width:100%;"></div>
-
+        <div class="slidecontainer">
+            <p>Robo-Advisor: <span id="range" style="font-weight: bold"></span>%</p>
+            <input type="range" min="1" max="100" value="50" class="slider" id="mySlider">
+            <button class="btn" onclick="confirm()">Confirm</button>
+        </div>
         <div class="dashboard">
-            <div style="float:left; width:40%">
+            <div>
                 <p style="font-size:20px; font-weight:bold">Summary</p>
                 <hr>
-                <p>Performance Level: <span id="level"></span></p>
-                <p>Total Return: <span id="return"></span></p>
-                <p>Robo-Advisor Monthly Gain: <span id="rMGain"></span></p>
-                <p>Bank Deposit Monthly Gain: <span id="bMGain"></span></p>
-                <p id="comparison" style="color:#cc0000; text-decoration:underline"></p>
-            </div>
-            <div class="slidecontainer">
-                <p>Robo-Advisor: <span id="range" style="font-weight: bold"></span>%</p>
-                <input type="range" min="1" max="100" value="50" class="slider" id="mySlider">
-                <button class="btn" onclick="confirm()">Confirm</button>
+                <p>Deposite: <span id="deposite"></span></p>
+                <p>Net Asset Value: <span id="total-return"></span></p>
+                <table style="width:100%">
+                    <tr>
+                      <th>Net Asset Value</th>
+                      <th>Past 1 month</th> 
+                      <th>Past 3 months</th>
+                      <th>Past 6 months</th>
+                    </tr>
+                    <tr>
+                      <td>Your portfolio</td>
+                      <td id="1m-user"></td>
+                      <td id="3m-user"></td>
+                      <td id="6m-user"></td>
+                    </tr>
+                    <tr>
+                      <td>100% invested in robo-advisor</td>
+                      <td id="1m-robo"></td>
+                      <td id="3m-robo"></td>
+                      <td id="6m-robo"></td>
+                    </tr>
+                    <tr>
+                      <td>100% invested in savings account</td>
+                      <td id="1m-base"></td>
+                      <td id="3m-base"></td>
+                      <td id="6m-base"></td>
+                    </tr>
+                  </table>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 var container = document.getElementById("chat-container");
 var chosen_options = []
-var robo_name = ""
+var roboName = ""
 
 //Create html chat box
 function create_chat_box(side, content){
@@ -85,21 +85,21 @@ function user_options(res) {
 }
 
 function get_attrs(){
-    robo_name = document.getElementById("name").value;
+    roboName = document.getElementById("name").value;
     gender = document.getElementById("gender");
     gender = gender.options[gender.selectedIndex].value;
-    profile_pic = document.getElementById("pic").value;
-    conv_style = document.getElementById("conv-style");
-    conv_style = conv_style.options[conv_style.selectedIndex].value;
-    performance_level = document.getElementById("performance-level");
-    performance_level = performance_level.options[performance_level.selectedIndex].value;
+    convStyle = document.getElementById("conv-style");
+    convStyle = convStyle.options[convStyle.selectedIndex].value;
     // store the info
+    sessionStorage.setItem("roboName", roboName);
+    sessionStorage.setItem("roboGender", gender);
+    sessionStorage.setItem("convStyle", convStyle);
 
-    console.log(robo_name);
-    console.log(conv_style);
     document.getElementById("attribute-form").style.display = 'none';
     document.getElementById("chat-container").style.display = 'table';
-    create_chat_box("left", "Hi, my name is " +robo_name+ " and I help people manage their portfolio. How are you doing today?");
+    // TODO change the avatar based on requirements    
+    container.innerHTML = '<img src="images/butler_avatar.png" style="display:block; margin:auto">';
+    create_chat_box("left", "Hi, my name is " +roboName+ " and I help people manage their portfolio. How are you doing today?");
     create_options(["I’m feeling good", "I’m doing okay"]);
 }
 
