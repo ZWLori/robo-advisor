@@ -161,22 +161,30 @@ function confirm(){
     rangeLst.push(range);
     updateChart(monthIndex);
 
-    if (monthIndex == 0) {
-        document.getElementById("1m-robo").innerHTML = Math.round(robo[monthIndex]*100)/100;
-        document.getElementById("1m-base").innerHTML = Math.round(base[monthIndex]*100)/100;
-        document.getElementById("1m-user").innerHTML = Math.round(user[monthIndex]*100)/100;
-    } else if (monthIndex == 2) {
-        document.getElementById("3m-robo").innerHTML = Math.round(robo[monthIndex]*100)/100;
-        document.getElementById("3m-base").innerHTML = Math.round(base[monthIndex]*100)/100;
-        document.getElementById("3m-user").innerHTML = Math.round(user[monthIndex]*100)/100;
-    } else if (monthIndex == 5) {
-        document.getElementById("6m-robo").innerHTML = Math.round(robo[monthIndex]*100)/100;
-        document.getElementById("6m-base").innerHTML = Math.round(base[monthIndex]*100)/100;
-        document.getElementById("6m-user").innerHTML = Math.round(user[monthIndex]*100)/100;
+    document.getElementById("1m-robo").innerHTML = calculatePastReturn(robo, monthIndex, 0);
+    document.getElementById("1m-base").innerHTML = calculatePastReturn(base, monthIndex, 0);
+    document.getElementById("1m-user").innerHTML = calculatePastReturn(user, monthIndex, 0);
+    if(monthIndex >= 2){
+        document.getElementById("3m-robo").innerHTML = calculatePastReturn(robo, monthIndex, 2);
+        document.getElementById("3m-base").innerHTML = calculatePastReturn(base, monthIndex, 2);
+        document.getElementById("3m-user").innerHTML = calculatePastReturn(user, monthIndex, 2);
+    }
+    if(monthIndex >= 5){
+        document.getElementById("6m-robo").innerHTML = calculatePastReturn(robo, monthIndex, 5);
+        document.getElementById("6m-base").innerHTML = calculatePastReturn(base, monthIndex, 5);
+        document.getElementById("6m-user").innerHTML = calculatePastReturn(user, monthIndex, 5);
     }
     monthIndex += 1;
-
 }
+
+function calculatePastReturn(lst, index, num){
+    if (num)
+        pastReturn = Math.round(lst[index]*100) - Math.round(lst[index-num]*100);
+    else
+        pastReturn = Math.round(lst[index]*100) - principle*100;
+    return pastReturn/principle + " %";
+}
+
 
 switch(parseInt(performanceLevelInt)){
     // TODO: compute the cutoffs at the backend
