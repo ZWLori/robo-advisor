@@ -1,10 +1,10 @@
 # Robo-advisor project plan
 
-## To-do list (for week2)
+## To-do list (for week3)
 
 ### Content development
 - (Yihan + Cuimin) Conversational scripts 
-	- Scripts during orientation
+	- Scripts during orientation  (✓)
 	- Scripts during main experiment
 
 - (Stella) Consistent UI design 
@@ -15,6 +15,7 @@
 
 ### Structure design 
 - (wanlu) Google cloud set up (or x10host)
+- (wanlu) Randomisation design
 - (wanlu) At the end of the experiment, display the overall incentives that participants earn. The algorithms and data are elaborated in file \performance_parameters.R, section 9
 
 - (Stella) Add the animation effect of the unfolding of x-axis. 
@@ -24,7 +25,8 @@
 	- After the 12 months, there's a crisis (lasts for 3 months), where the performance dropped 10% in the 13th month, and then performance resumes normal during the 14th and 15th month.
 
 ### Debugging
-- (Wanlu) Revise the content of chart & summary sheet of robo-advisor's past performance. 
+- (Wanlu) Revise the content of chart & summary sheet of robo-advisor's past performance. (✓)
+- (Wanlu) Incentives are always 5 no matter how the performance is, please fix this issue.
 - (Wanlu) The condition assignment needs to be consistent, e.g. those randomly assigned to high performance during demo stage shall also be assigned to high performance during main experiment 
 - (Wanlu) During the trial and main experiment stages, there's no December (Nov immediately leaps to Jan, skipping Dec).
 - (wanlu) Revise the formula to calculate past performance
@@ -37,9 +39,9 @@
 ### Feature refinement (ranked by priority)
 - (Stella) Design several styles of avatar for robo-advisor  
 
-- (Wanlu) The conversation of robo-advisor needs to be accompanied with the corresponding avatar, add placeholder
+- (Wanlu) The conversation of robo-advisor needs to be accompanied with the corresponding avatar, add placeholder  (✓)
 
-- (Stell) Design the template & front-end part of avatar & conversational bubbles
+- (Stell) Design the template & front-end part of avatar & conversational bubbles  (✓)
 
 - Demo showcase & main experiment
 	- (Stella) Replace the slider with a pie chart to make it more intuitive to understand (illustrated in ppt, feature refinement section)  
