@@ -30,7 +30,7 @@ var user = [] // the returns for user TODO: fill-in the list
 var dps_user = [], dps_base = [], dps_robo = [];
 
 for (i=0; i<totalInterval; i++){
-    if (startM % 12 == 0){
+    if (startM % 12 == 1){
         startY += 1;
         startM = 1;
     }
@@ -161,9 +161,9 @@ function confirm(){
     rangeLst.push(range);
     updateChart(monthIndex);
 
-    document.getElementById("1m-robo").innerHTML = calculatePastReturn(robo, monthIndex, 0);
-    document.getElementById("1m-base").innerHTML = calculatePastReturn(base, monthIndex, 0);
-    document.getElementById("1m-user").innerHTML = calculatePastReturn(user, monthIndex, 0);
+    document.getElementById("1m-robo").innerHTML = calculatePastReturn(robo, monthIndex, 1);
+    document.getElementById("1m-base").innerHTML = calculatePastReturn(base, monthIndex, 1);
+    document.getElementById("1m-user").innerHTML = calculatePastReturn(user, monthIndex, 1);
     if(monthIndex >= 2){
         document.getElementById("3m-robo").innerHTML = calculatePastReturn(robo, monthIndex, 2);
         document.getElementById("3m-base").innerHTML = calculatePastReturn(base, monthIndex, 2);
@@ -178,11 +178,14 @@ function confirm(){
 }
 
 function calculatePastReturn(lst, index, num){
-    if (num)
-        pastReturn = Math.round(lst[index]*100) - Math.round(lst[index-num]*100);
-    else
-        pastReturn = Math.round(lst[index]*100) - principle*100;
-    return pastReturn/principle + " %";
+    if (index){
+        pastReturn = lst[index] - lst[index-num];
+        return (pastReturn/lst[index-num]*100).toFixed(3) + "%";
+    }
+    else {
+        pastReturn = lst[index] - principle;
+        return (pastReturn/principle*100).toFixed(3) + " %";
+    }
 }
 
 function save(){

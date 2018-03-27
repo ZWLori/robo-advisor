@@ -26,10 +26,10 @@
 
 ### Debugging
 - (Wanlu) Revise the content of chart & summary sheet of robo-advisor's past performance. (✓)
-- (Wanlu) Incentives are always 5 no matter how the performance is, please fix this issue.
-- (Wanlu) The condition assignment needs to be consistent, e.g. those randomly assigned to high performance during demo stage shall also be assigned to high performance during main experiment 
-- (Wanlu) During the trial and main experiment stages, there's no December (Nov immediately leaps to Jan, skipping Dec).
-- (wanlu) Revise the formula to calculate past performance
+- (Wanlu) Incentives are always 5 no matter how the performance is, please fix this issue. (✓)
+- (Wanlu) The condition assignment needs to be consistent, e.g. those randomly assigned to high performance during demo stage shall also be assigned to high performance during main experiment (✓)
+- (Wanlu) During the trial and main experiment stages, there's no December (Nov immediately leaps to Jan, skipping Dec). (✓)
+- (wanlu) Revise the formula to calculate past performance (✓)
 	- The "past 1 month" is defined as:
 	$\frac{return_t - return_{t-1}}{return_{t-1}}$
 	- The "past 3 month" is defined as:

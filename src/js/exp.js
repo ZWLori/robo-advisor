@@ -161,9 +161,9 @@ function confirm(){
     rangeLst.push(range);
     updateChart(monthIndex);
 
-    document.getElementById("1m-robo").innerHTML = calculatePastReturn(robo, monthIndex, 0);
-    document.getElementById("1m-base").innerHTML = calculatePastReturn(base, monthIndex, 0);
-    document.getElementById("1m-user").innerHTML = calculatePastReturn(user, monthIndex, 0);
+    document.getElementById("1m-robo").innerHTML = calculatePastReturn(robo, monthIndex, 1);
+    document.getElementById("1m-base").innerHTML = calculatePastReturn(base, monthIndex, 1);
+    document.getElementById("1m-user").innerHTML = calculatePastReturn(user, monthIndex, 1);
     if(monthIndex >= 2){
         document.getElementById("3m-robo").innerHTML = calculatePastReturn(robo, monthIndex, 2);
         document.getElementById("3m-base").innerHTML = calculatePastReturn(base, monthIndex, 2);
@@ -178,14 +178,15 @@ function confirm(){
 }
 
 function calculatePastReturn(lst, index, num){
-    if (num)
-        pastReturn = Math.round(lst[index]*100) - Math.round(lst[index-num]*100);
-    else
-        pastReturn = Math.round(lst[index]*100) - principle*100;
-    return pastReturn/principle + " %";
+    if (index){
+        pastReturn = lst[index] - lst[index-num];
+        return (pastReturn/lst[index-num]*100).toFixed(3) + "%";
+    }
+    else {
+        pastReturn = lst[index] - principle;
+        return (pastReturn/principle*100).toFixed(3) + " %";
+    }
 }
-
-
 switch(parseInt(performanceLevelInt)){
     // TODO: compute the cutoffs at the backend
     case 0: 
@@ -200,8 +201,8 @@ switch(parseInt(performanceLevelInt)){
 }
 // Incentives schemes for participants
 function compute_incentives(quantile){
-    console.log(quantile);
-    for (cutoff in cutoffs){
+    for (index in cutoffs){
+        cutoff = cutoffs[index]
         if (cutoff >= quantile) {
             percentage_range = cutoffs.indexOf(cutoff) + 1;
             break;
@@ -213,16 +214,16 @@ function compute_incentives(quantile){
 	    return base
     // When performance quantile is between 10 - 60%:
     if (percentage_range <= 6)
-        return base * (1 + percentage_range * 0.1)
+        return base * (1 + percentage_range * 0.1).toFixed(1)
 		// # 10 - 20% percentile: base*1.2
 		// # 20 - 30% percentile: base*1.3
 
     // When performance quantile is between 60 - 95%:
     if (percentage_range < 10)
-        return base * Math.pow((1+ percentage_range * 0.1), 2)
+        return base * Math.pow((1+ percentage_range * 0.1), 2).toFixed(1)
     
     // When performance quantile is between 95 - 100%:
-    return base * Math.pow((1+ percentage_range * 0.1), 3)
+    return base * Math.pow((1+ percentage_range * 0.1), 3).toFixed(1)
 }
 
 //  Simulated returns of robo-advisors by past performance

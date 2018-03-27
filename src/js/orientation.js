@@ -98,7 +98,7 @@ function get_attrs(){
     document.getElementById("attribute-form").style.display = 'none';
     document.getElementById("chat-container").style.display = 'table';
     // TODO change the avatar based on requirements    
-    container.innerHTML = '<img src="images/butler_avatar.png" style="display:block; margin:auto">';
+    container.innerHTML = '<img src="../../images/butler_avatar.png" style="display:block; margin:auto">';
     create_chat_box("left", "Hi, my name is " +roboName+ " and I help people manage their portfolio. How are you doing today?");
     create_options(["I’m feeling good", "I’m doing okay"]);
 }
