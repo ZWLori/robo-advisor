@@ -37,7 +37,7 @@ var user = [] // the returns for user TODO: fill-in the list
 var dps_user = [], dps_base = [], dps_robo = [];
 
 for (i=0; i<totalInterval; i++){
-    if (startM % 12 == 0){
+    if (startM % 12 == 1){
         startY += 1;
         startM = 1;
     }
