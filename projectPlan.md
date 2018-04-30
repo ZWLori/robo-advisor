@@ -3,9 +3,10 @@
 ## To-do list (for week3)
 
 ### Content development
-- (Yihan + Cuimin) Conversational scripts 
-	- Scripts during orientation  (✓)
-	- Scripts during main experiment
+- Conversational scripts (✓)
+- Scripts during orientation  (✓)
+	- Scripts during main experiment 1 + 2 (✓)
+	- Scripts during main experiment 3 + 4 
 
 - (Stella) Consistent UI design 
 
@@ -14,17 +15,25 @@
 
 
 ### Structure design 
-- (wanlu) Google cloud set up (or x10host)
-- (wanlu) Randomisation design
-- (wanlu) At the end of the experiment, display the overall incentives that participants earn. The algorithms and data are elaborated in file \performance_parameters.R, section 9
 
+- (wanlu) Randomisation design
 - (Stella) Add the animation effect of the unfolding of x-axis. 
 - (Stella) Add a transition prompt after each section ends
-- (Wanlu) Introduce a "crisis" option to the main experiment [can be turned on or off by the experimenter during the randomisation stage]
-	- During the normal period (12 months), the robo-advisor's performance is the same as the demo period 
-	- After the 12 months, there's a crisis (lasts for 3 months), where the performance dropped 10% in the 13th month, and then performance resumes normal during the 14th and 15th month.
 
 ### Debugging
+
+
+### Feature refinement (ranked by priority)
+
+
+- Demo showcase & main experiment
+	- (Stella) Replace the slider with a pie chart to make it more intuitive to understand (illustrated in ppt, feature refinement section)  
+
+### Timeline
+
+
+## Have-done list
+- (wanlu) At the end of the experiment, display the overall incentives that participants earn. The algorithms and data are elaborated in file \performance_parameters.R, section 9  (✓)
 - (Wanlu) Revise the content of chart & summary sheet of robo-advisor's past performance. (✓)
 - (Wanlu) Incentives are always 5 no matter how the performance is, please fix this issue. (✓)
 - (Wanlu) The condition assignment needs to be consistent, e.g. those randomly assigned to high performance during demo stage shall also be assigned to high performance during main experiment (✓)
@@ -35,22 +44,13 @@
 	- The "past 3 month" is defined as:
 	$\frac{return_t - return_{t-3}}{return_{t-3}}$,
 	where t changes dynamically within investment period
-
-### Feature refinement (ranked by priority)
-- (Stella) Design several styles of avatar for robo-advisor  
-
+- (Stella) Design several styles of avatar for robo-advisor  (✓)
 - (Wanlu) The conversation of robo-advisor needs to be accompanied with the corresponding avatar, add placeholder  (✓)
-
 - (Stell) Design the template & front-end part of avatar & conversational bubbles  (✓)
-
-- Demo showcase & main experiment
-	- (Stella) Replace the slider with a pie chart to make it more intuitive to understand (illustrated in ppt, feature refinement section)  
-
-### Timeline
-
-![timeline](/images/timeline.png)
-
-## Have-done list
+- (wanlu) Google cloud set up (or x10host)  (✓)
+- (Wanlu) Introduce a "crisis" option to the main experiment [can be turned on or off by the experimenter during the randomisation stage] (cancelled)
+	- During the normal period (12 months), the robo-advisor's performance is the same as the demo period 
+	- After the 12 months, there's a crisis (lasts for 3 months), where the performance dropped 10% in the 13th month, and then performance resumes normal during the 14th and 15th month.
 
 -  (✓) (Wanlu) Orientation 
 	- Input style
@@ -101,3 +101,4 @@ The purpose of final evaluation is to solicit participants' opinions of robo-adv
 	- Survey question for final evaluation(✓)
 
 ![overview](/images/overview.png)
+
