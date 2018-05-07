@@ -1,9 +1,22 @@
-var container = document.getElementById("chat-container");
+// False: lab experiment; True: online version
+var online_version = false; 
+var container = $("#chatContainer");
 var chosen_options = []
 var roboName = ""
 // Generate random user id, a 6-digit value
 var user_id = Math.floor(Math.random()*900000) + 100000;
 sessionStorage.setItem('user_id', user_id);
+
+$(window).on('load', function(){
+    if (online_version){
+        $("#expIndex").css('display', 'none');
+        rand_int = Math.random() > 0.5 ? 1:0;
+        if (rand_int)
+            var convStyle = 'submissive';
+        else
+            var convStyle = 'dominant';
+    }
+})
 
 //Create html chat box
 function create_chat_box(side, content){
@@ -17,7 +30,7 @@ function create_chat_box(side, content){
     }
     text.innerHTML = content;
     box.appendChild(text);
-    container.appendChild(box);
+    container.append(box);
 }
 
 //Create html element for options
@@ -26,7 +39,7 @@ function create_options(content_list){
     for (c in content_list){
         html_str += "<button class='btn option' onclick=chose_opt(this)>" + content_list[c] + "</button>";
     };
-    container.innerHTML += html_str + "</div>";
+    container.append(html_str + "</div>");
 }
 
 // Response after user chosing an option
@@ -36,7 +49,7 @@ function chose_opt(ele){
         // store the chosen options
         return
     }
-    container.removeChild(document.getElementById("options"));
+    $("#options").remove();
     chosen_options.push(ele.innerText);
     create_chat_box("right", ele.innerText);
     setTimeout(function(){
@@ -91,17 +104,24 @@ function get_attrs(){
     roboName = document.getElementById("name").value;
     gender = document.getElementById("gender");
     gender = gender.options[gender.selectedIndex].value;
-    convStyle = document.getElementById("conv-style");
-    convStyle = convStyle.options[convStyle.selectedIndex].value;
+    
     // store the info
     sessionStorage.setItem("roboName", roboName);
     sessionStorage.setItem("roboGender", gender);
-    sessionStorage.setItem("convStyle", convStyle);
 
-    document.getElementById("attribute-form").style.display = 'none';
-    document.getElementById("chat-container").style.display = 'table';
-    // TODO change the avatar based on requirements    
-    container.innerHTML = '<img src="images/butler_avatar.png" style="display:block; margin:auto">';
+    if (!online_version) {
+        convStyle = document.getElementById("convStyle");
+        convStyle = convStyle.options[convStyle.selectedIndex].value;
+        sessionStorage.setItem("convStyle", convStyle);
+    }
+
+    document.getElementById("attrForm").style.display = 'none';
+    document.getElementById("chatContainer").style.display = 'table';
+    // change the avatar based on requirements   
+    if (convStyle == 'dominant')
+        container.prepend('<img src="images/avatar/(YH)RoboAdvisor_dominant.gif" style="display:block; margin:auto">');
+    else if (convStyle == 'submissive')
+        container.prepend('<img src="images/avatar/(YH)RoboAdvisor_submissive.gif" style="display:block; margin:auto">');
     create_chat_box("left", "Hi, my name is " +roboName+ " and I help people manage their portfolio. How are you doing today?");
     create_options(["I’m feeling good", "I’m doing okay"]);
 }
