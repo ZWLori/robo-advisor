@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/stage1.css">
 
     <title>Stage 1</title>
@@ -39,7 +40,41 @@
 
     <main class="container-fluid">
 
-            <div class="row page-content page-background">
+        <h3 class="text-center">Stage 1 - User Orientation</h3>
+        <div id="attrForm">
+            <div  class="form-group" id="expIndex">
+                <label for="convStyle">Experiment Index:</label>
+                <select class="form-control"  id="convStyle">
+                    <option value="dominant">0</option>
+                    <option value="submissive">1</option>
+                </select>
+
+                <br>
+
+                <label for="name">Name:</label>
+                <select class="form-control" id="name">
+                    <option value="Warren">Warren</option>
+                    <option value="Tom">Tom</option>
+                </select>
+                <br>
+
+                <label for="name"> Gender:</label>
+                <select class="form-control"  id="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="neutral">Neutral</option>
+                </select>
+
+                <br>
+
+                <button  class="btn btn-default" onclick="get_attrs()">Save</button>
+
+            </div>
+
+
+        </div>
+
+            <div id="cha" class="row page-content page-background">
                 <div class="col-sm-6 col-md-4 col-lg-3 user-section fixed-position">
 
                     <div class="user-content text-center">
@@ -56,32 +91,33 @@
                 <div class="col-sm-6 col-md-8 col-lg-9 chat-section ml-sm-auto">
                     <!--<div class="chat-position-holder"></div>-->
                     <div class="chat-background">
-                    <div class="chat-content text-center">
+                    <div class="chat-content">
 
                         <div class="container" style="display:none" id="chatContainer">
                         </div>
-                        <div class="msg-row msg-right">
-                        <div class="">
-                            <div class="msg msg-bounce-in-right">
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                            </div>
-                            <div class="msg msg-bounce-in-right">
+                        <!--<div class="msg-row msg-left">-->
 
-                                    test text
-                                </div>
-                        </div>
+                            <!--<div class="msg">-->
+                                <!--<div class="dot"></div>-->
+                                <!--<div class="dot"></div>-->
+                                <!--<div class="dot"></div>-->
+                            <!--</div>-->
+                            <!--<div class="msg msg-bounce-in-left">-->
 
-                        </div>
+                                    <!-- test text -->
+                                <!--</div>-->
+
+                        <!--</div>-->
                     </div>
 
                 </div>
 
             </div>
         </div>
+
+
     </main>
 
-<script src="js/orientation.js"></script>
+<script src="js/stage1.js"></script>
 </body>
 </html>

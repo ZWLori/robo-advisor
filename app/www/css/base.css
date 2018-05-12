@@ -1,0 +1,47 @@
+body, html {
+    height: 100%;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+body{
+    padding-top: 4rem;
+}
+
+nav{
+    background-color: white;
+}
+/*main{*/
+/*display: -ms-flex; display: -webkit-flex; display: flex;*/
+/*}*/
+
+.avatar-img{
+    border-radius: 50%;
+    width: 80%;
+}
+
+.page-content{
+    position: relative;
+    min-height: 100vh;
+
+}
+.page-background{
+
+    /*background-image: url('../images/background.jpg');*/
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: scroll;*/
+    /*!*min-height: calc(100vh - 150px);*!*/
+
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size: cover;*/
+    /*background-size: cover;*/
+    /*background-repeat: no-repeat;*/
+    background: url('../images/background.jpeg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
