@@ -1,0 +1,74 @@
+
+.chat-background{
+    width: 100%;
+    background: rgba(207,217,218, 0.7);
+    /*height: auto;*/
+    /*background-size: auto 100%;*/
+}
+
+.chat-section{
+    padding: 3rem 2rem;
+}
+
+.chat-content{
+    min-width: 300px;
+    padding: 50px;
+}
+
+.user-section{
+    overflow: hidden;
+    pointer-events: none;
+    padding: 3rem 1rem;
+    /*padding: 3rem 0rem;*/
+}
+
+.user-content-bottom{
+  margin-top: 2rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /*position: absolute;*/
+    /*bottom: 5%;*/
+}
+
+.user-content-top{
+    margin: 0 auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /*position: absolute;*/
+    /*top: 10%;*/
+}
+
+#chartContainer{
+    /*height: 370px;*/
+    height: 400px;
+    margin: 0 auto;
+}
+
+.slide-container {
+    text-align: center;
+}
+
+/*for the round slider to center in parent div*/
+.rs-control {
+    margin: 35px auto 25px !important;
+}
+
+
+.mark-bar {
+    float:left;
+    width: 33.3%;
+    text-align: center;
+    border-radius: 3px;
+    margin: 5px 0 10px 0;
+    color: white;
+}
+.mark-bar:before, .mark-bar:after{
+    clear:both;
+}
+#demo-eval{
+    text-align: center;
+}
+
+.mark-bar-region{
+    margin-bottom: 3rem;
+}
