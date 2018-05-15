@@ -1,22 +1,13 @@
 // False: lab experiment; True: online version
 var online_version = false;
 var container = $("#chatContainer");
-var chosen_options = []
-var roboName = ""
-// Generate random user id, a 6-digit value
-var user_id = Math.floor(Math.random() * 900000) + 100000;
-sessionStorage.setItem('user_id', user_id);
+var chosen_options = [];
+var roboName = "";
 
-$(window).on('load', function () {
-    if (online_version) {
-        $("#expIndex").css('display', 'none');
-        rand_int = Math.random() > 0.5 ? 1 : 0;
-        if (rand_int)
-            var convStyle = 'submissive';
-        else
-            var convStyle = 'dominant';
-    }
-})
+$(window).on('load', function(){
+    get_attrs();
+});
+
 
 //Create html chat box
 function create_chat_box(side, content) {
@@ -72,14 +63,13 @@ function create_options(content_list) {
     for (c in content_list) {
         html_str += "<button class='btn btn-primary option' onclick=chose_opt(this)>" + content_list[c] + "</button>";
     }
-    ;
     container.append(html_str + "</div>");
 }
 
 // Response after user chosing an option
 function chose_opt(ele) {
     if (ele.innerText == "I'm ready to proceed!") {
-        document.location.href = 'demo.html';
+        document.location.href = 'stage2.html';
         // store the chosen options
         return
     }
@@ -148,33 +138,18 @@ function user_options(res) {
 }
 
 function get_attrs() {
-    roboName = document.getElementById("name").value;
-    gender = document.getElementById("gender");
-    gender = gender.options[gender.selectedIndex].value;
 
-    // store the info
-    sessionStorage.setItem("roboName", roboName);
-    sessionStorage.setItem("roboGender", gender);
-
-    if (!online_version) {
-        convStyle = document.getElementById("convStyle");
-        convStyle = convStyle.options[convStyle.selectedIndex].value;
-        sessionStorage.setItem("convStyle", convStyle);
-    }
-
-    document.getElementById("attrForm").style.display = 'none';
-    document.getElementById("chatContainer").style.display = 'table';
-    // change the avatar based on requirements   
+    var convStyle = sessionStorage.getItem("convStyle");
+    // change the avatar based on requirements
     if (convStyle == 'dominant')
-        container.prepend('<img src="images/avatar/(YH)RoboAdvisor_dominant.gif" class="robo-img">');
+        $("#robo-image").attr("src", "images/avatar/(YH)RoboAdvisor_dominant.gif");
     else if (convStyle == 'submissive')
-        container.prepend('<img src="images/avatar/(YH)RoboAdvisor_submissive.gif" class="robo-img">');
-    response_box = create_chat_box("left", "Hi, my name is " + roboName + " and I help people manage their portfolio. How are you doing today?");
+        $("#robo-image").attr("src", "images/avatar/(YH)RoboAdvisor_submissive.gif");
 
+    response_box = create_chat_box("left", "Hi, my name is " + roboName + " and I help people manage their portfolio. How are you doing today?");
     create_wait_animation(response_box.box);
     simulate_delay(response_box).then(()=>
     create_options(["I’m feeling good", "I’m doing okay"]));
-
 }
 
 function store_user_input() {
@@ -194,3 +169,4 @@ function store_user_input() {
     }
 
 }
+

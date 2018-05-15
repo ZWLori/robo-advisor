@@ -15,14 +15,14 @@
     padding: 50px;
 }
 
-.user-section{
+.robot-section{
     overflow: hidden;
     pointer-events: none;
     padding: 3rem 1rem;
     /*padding: 3rem 0rem;*/
 }
 
-.user-content-bottom{
+.robot-content-bottom{
   margin-top: 2rem;
     overflow-x: hidden;
     overflow-y: auto;
@@ -30,7 +30,7 @@
     /*bottom: 5%;*/
 }
 
-.user-content-top{
+.robot-content-top{
     margin: 0 auto;
     overflow-x: hidden;
     overflow-y: auto;

@@ -1,12 +1,18 @@
 
-// var slider = document.getElementById("mySlider");
-// var output = document.getElementById("range");
-// output.innerHTML = slider.value; // Display the default slider value
-//
-// // Update the current slider value (each time you drag the slider handle)
-// // slider.oninput = function() {
-// //     output.innerHTML = this.value;
-// // }
+var monthIndex = 0;
+var totalInterval = 12;  // Investment horizon
+var startY = 2016, startM = 1;
+var principle = totalGain = 10000;
+var low_mean = -0.03, low_var = 2.661;
+var medium_mean = 0.452, medium_var = 2.661;
+var high_mean = 1.158, high_var = 2.661;
+var base_mean = 0.125;
+var rangeLst = []; // store the user selected range value
+var robo = [] // the returns from robo-advisor
+var base = get_returns(base_mean, 0) // Fixed: annualized return
+var user = [] // the returns for user TODO: fill-in the list
+// datapoints
+var dps_user = [], dps_base = [], dps_robo = [];
 
 
 // add slider
@@ -28,27 +34,19 @@ $("#performance-slider").roundSlider({
     sliderType: "min-range"
 });
 
-// var performance_slider = document.getElementById("performance_slider");
-// var performance_value = document.getElementById("performance_value");
-// performance_value.innerHTML = performance_slider.value;
-// performance_slider.oninput = function(){
-//     performance_value.innerHTML = performance_slider.value;
-// }
 
-var monthIndex = 0;
-var totalInterval = 12;  // Investment horizon
-var startY = 2016, startM = 1;
-var principle = totalGain = 10000;
-var low_mean = -0.03, low_var = 2.661;
-var medium_mean = 0.452, medium_var = 2.661;
-var high_mean = 1.158, high_var = 2.661;
-var base_mean = 0.125;
-var rangeLst = []; // store the user selected range value
-var robo = [] // the returns from robo-advisor
-var base = get_returns(base_mean, 0) // Fixed: annualized return
-var user = [] // the returns for user TODO: fill-in the list
-// datapoints
-var dps_user = [], dps_base = [], dps_robo = [];
+$(window).on('load', function(){
+    get_attrs();
+});
+
+function get_attrs() {
+    var convStyle = sessionStorage.getItem("convStyle");
+    // change the avatar based on requirements
+    if (convStyle == 'dominant')
+        $("#robo-image").attr("src", "images/avatar/(YH)RoboAdvisor_dominant.gif");
+    else if (convStyle == 'submissive')
+        $("#robo-image").attr("src", "images/avatar/(YH)RoboAdvisor_submissive.gif");
+}
 
 for (i=0; i<totalInterval; i++){
     if (startM % 12 == 1){
@@ -70,6 +68,7 @@ function read_performance_slider_val(){
     var slider_obj = $("#performance-slider").data("roundSlider");
     return slider_obj.option("value");
 }
+
 var performanceLevelInt = Math.floor(Math.random() * 3);
 // performance level: 0 - "low", 1 - "medium", 2 -"high"
 sessionStorage.setItem("performanceLevel", performanceLevelInt);

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/stage1.css">
 
-    <title>Stage 1</title>
+    <title>Stage 0</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-light fixed-top">
@@ -23,7 +23,7 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="#">Stage 1<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
@@ -37,52 +37,50 @@
     </div>
 </nav>
 
-    <main class="container-fluid">
 
-        <h3 class="text-center">Stage 1 - User Orientation</h3>
-            <div class="row page-content page-background">
-                <div class="col-sm-6 col-md-4 col-lg-3 robot-section fixed-position">
+<main class="container-fluid">
 
-                    <div class="robot-content text-center">
-                        <img id="robo-image" alt="avatar" class="avatar-img">
-                        <div class="user-description">
-                            <h3 style="margin-top: 30px;">Ethan</h3>
-                            <h5>Visual advisor</h5>
-                        </div>
+    <h3 class="text-center">Stage 0 - Choosing the robo </h3>
 
-                    </div>
+    <div class="row page-content page-background justify-content-center">
+    <div class="col-sm-12 col-lg-8 col-md-10">
+        <div id="attrForm" style="margin: 40px auto;">
+            <div  class="form-group" id="expIndex">
+                <label for="convStyle">Experiment Index:</label>
+                <select class="form-control"  id="convStyle">
+                    <option value="dominant">0</option>
+                    <option value="submissive">1</option>
+                </select>
 
-                </div>
+                <br>
 
-                <div class="col-sm-6 col-md-8 col-lg-9 chat-section ml-sm-auto">
-                    <!--<div class="chat-position-holder"></div>-->
-                    <div class="chat-background">
-                    <div class="chat-content">
+                <label for="name">Name:</label>
+                <select class="form-control" id="name">
+                    <option value="Warren">Warren</option>
+                    <option value="Tom">Tom</option>
+                </select>
+                <br>
 
-                        <div class="container" style="display:block " id="chatContainer"></div>
-                        <!--<div class="msg-row msg-left">-->
+                <label for="name"> Gender:</label>
+                <select class="form-control"  id="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="neutral">Neutral</option>
+                </select>
 
-                            <!--<div class="msg">-->
-                                <!--<div class="dot"></div>-->
-                                <!--<div class="dot"></div>-->
-                                <!--<div class="dot"></div>-->
-                            <!--</div>-->
-                            <!--<div class="msg msg-bounce-in-left">-->
+                <br>
 
-                                    <!-- test text -->
-                                <!--</div>-->
-
-                        <!--</div>-->
-                    </div>
-
-                </div>
+                <button  class="btn btn-default" onclick="get_attrs()">Save</button>
 
             </div>
+
         </div>
+    </div>
+    </div>
 
 
-    </main>
+</main>
 
-<script src="js/stage1.js"></script>
+<script src="js/stage0.js"></script>
 </body>
 </html>
