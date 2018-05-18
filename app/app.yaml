@@ -4,8 +4,8 @@ threadsafe: true
 
 handlers:
 - url: /
-  static_files: www/index.html
-  upload: www/index.html
+  static_files: www/stage0.html
+  upload: www/stage0.html
 
 - url: /upload.php
   script: www/upload.php
@@ -13,17 +13,20 @@ handlers:
 - url: /css
   static_dir: www/css
 
-- url: /demo.html
-  static_files: www/demo.html
-  upload: www/demo.html
+- url: /stage1.html
+  static_files: www/stage1.html
+  upload: www/stage1.html
 
-- url: /exp.html
-  static_files: www/exp.html
-  upload: www/exp.html
+- url: /stage2.html
+  static_files: www/stage2.html
+  upload: www/stage2.html
 
 - url: /js
   static_dir: www/js
 
 - url: /images
   static_dir: www/images
+
+- url: /scripts
+  static_dir: www/scripts
   

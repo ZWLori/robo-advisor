@@ -1,0 +1,61 @@
+{
+    "orientation":{
+        "greetings":[
+            [
+                ["Hello! My name is Linus, how are you doing?"], 
+                ["I am doing okay", "I'm feeling good"]
+            ],
+            [
+                ["I have been working at Wealsome Capital as a financial advisor for 3 years. Many customers have chosen and trusted me for wealth management.",
+                "Would you like to know more about my work?"],
+                ["Yes, please!", "Okay, I don't mind"]
+            ]
+        ],
+        "qna":[
+            [
+                ["QA1-S-Q1"],
+                ["QA1-A1", "QA1-A2"]
+            ],
+            [
+                ["QA2-S-Q2"],
+                ["QA2-A1", "QA1-A2"]
+            ],
+            [
+                ["QA3-S-Q3"],
+                ["QA3-A1", "QA3-A2"]
+            ]
+        ],
+        "task-orientation":[
+            [
+                ["TO1-S-Q1"],
+                ["TO1-A1", "TO1-A2"]
+            ],
+            [
+                ["TO2-S-Q2"],
+                ["TO2-A1", "TO2-A2"]
+            ],
+            [
+                ["TO3-S-Q3"],
+                ["TO3-A1", "TO3-A2"]
+            ],
+            [
+                ["Thank you very much!"],
+                ["I'm ready to proceed!"]
+            ]
+        ]
+    },
+    "experiment":{
+        "underperform":[
+            ["S-UP1","S-UP2","S-UP3","S-UP4","S-UP5","S-UP6","S-UP7","S-UP8","S-UP9","S-UP10","S-UP11","S-UP12"],
+            [["UP1-1","UP1-2"],["UP2-1","UP2-2"],["UP3-1","UP3-2"]]
+        ],
+        "outperform":[
+            ["S-OP1","S-OP2","S-OP3","S-OP4","S-OP5","S-OP6","S-OP7","S-OP8","S-OP9","S-OP10","S-OP11","S-OP12"],
+            [["OP1-1","OP1-2"],["OP2-1","OP2-2"],["OP3-1","OP3-2"]]
+        ],
+        "balanced":[
+            ["S-BP1","S-BP2","S-BP3","S-BP4","S-BP5","S-BP6","S-BP7","S-BP8","S-BP9","S-BP10","S-BP11","S-BP12"],
+            [["BP1-1","BP1-2"],["BP2-1","BP2-2"],["BP3-1","BP3-2"]]
+        ]
+    }
+}
