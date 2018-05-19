@@ -40,20 +40,19 @@ function oneConvRound(index){
     if (convRoundCount >= roboScriptLst.length)
         return
     robo = roboScriptLst[index];
-    roboBox = create_chat_box("left", robo[0]);
-    create_wait_animation(roboBox.box);
-    simulate_delay(roboBox).then(()=> {
-
-    for (i=1;i<robo.length;i++) {
-        box = create_chat_box("left", robo[i]);
-        add_text(box.box, box.text);
-    }
+    // create a box to holds the waiting dots
+    wait_box = create_chat_box("left", "");
+    // add the wait dots
+    create_wait_animation(wait_box.box);
+    // remove the wait dots after some time and then display all message
+    simulate_delay(wait_box).then(()=> {
+        for (i=0;i<robo.length;i++) {
+            box = create_chat_box("left", robo[i]);
+            add_text(box.box, box.text);
+        }
         create_options(responseOptsLst[index]);
         convRoundCount += 1;
     });
-
-
-
 }
 
 //Create html chat box
@@ -99,7 +98,6 @@ function create_wait_animation(box) {
 
 
 function remove_wait_animation(box) {
-
     $(".wait-dots").remove();
 }
 
@@ -130,7 +128,7 @@ function chose_opt(ele) {
 async function simulate_delay(box) {
     await timeout(1000);
    remove_wait_animation(box.box);
-   add_text(box.box, box.text);
+   // add_text(box.box, box.text);
 }
 
 function timeout (ms) {
