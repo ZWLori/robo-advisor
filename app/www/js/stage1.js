@@ -40,14 +40,20 @@ function oneConvRound(index){
     if (convRoundCount >= roboScriptLst.length)
         return
     robo = roboScriptLst[index];
-    for (i=0;i<robo.length;i++){
-        roboBox = create_chat_box("left", robo[i]);
-        create_wait_animation(roboBox.box);
-        simulate_delay(roboBox)
+    roboBox = create_chat_box("left", robo[0]);
+    create_wait_animation(roboBox.box);
+    simulate_delay(roboBox).then(()=> {
+
+    for (i=1;i<robo.length;i++) {
+        box = create_chat_box("left", robo[i]);
+        add_text(box.box, box.text);
     }
-    // TODO the options should appear after robo finishing the dialog
-    create_options(responseOptsLst[index]);
-    convRoundCount += 1;
+        create_options(responseOptsLst[index]);
+        convRoundCount += 1;
+    });
+
+
+
 }
 
 //Create html chat box
