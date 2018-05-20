@@ -295,3 +295,40 @@ msg-row {
     width: 20%;
     height: 20%;
 }
+
+
+/* Stage 0 buttons */
+
+.button1{
+    background-color: dimgrey;
+    color: #fff;
+    width: 180px;
+    height: 40px;
+    margin: 10px;
+}
+
+.buttonD{
+    background-color: #4D717A;
+    color: #fff;
+     width: 180px;
+     height: 40px;
+     margin: 10px;
+ }
+
+.buttonS{
+    background-color: #3F4763;
+    color: #fff;
+    width: 180px;
+    height: 40px;
+    margin: 10px;
+}
+
+label {
+    margin: 30px;
+
+}
+
+h5 {
+    color: dimgrey;
+    text-transform: uppercase;
+}
