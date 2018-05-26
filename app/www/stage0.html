@@ -51,35 +51,13 @@
                 <center>
                     <label>Please select condition:</label>  <p>
 
-                <button type="button" class="btn buttonD">D</button>
+                <button type="button" class="btn buttonD btn-conv" value="dominant">D</button>
 
-                <button type="button" class="btn buttonS">S</button></center>
-
-                <label for="convStyle">Experiment Index:</label>
-                <select class="form-control"  id="convStyle">
-                    <option value="dominant">0</option>
-                    <option value="submissive">1</option>
-                </select>
+                <button type="button" class="btn buttonS btn-conv" value="submissive">S</button></center>
 
                 <br>
 
-                <label for="name">Name:</label>
-                <select class="form-control" id="name">
-                    <option value="Warren">Warren</option>
-                    <option value="Tom">Tom</option>
-                </select>
-                <br>
-
-                <label for="name"> Gender:</label>
-                <select class="form-control"  id="gender">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="neutral">Neutral</option>
-                </select>
-
-                <br>
-
-                <button  class="btn btn-default" onclick="get_attrs()">Save</button>
+                <button  class="btn btn-default btn-right" onclick="store_user_input()">Next</button>
 
             </div>
 

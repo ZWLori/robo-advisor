@@ -46,3 +46,16 @@ nav{
     background-size: cover;
 
 }
+
+.btn {
+    cursor: pointer;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border-width: 0px;
+}
+
+.btn:hover {
+    opacity: 1;
+}

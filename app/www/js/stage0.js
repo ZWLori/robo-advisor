@@ -1,10 +1,11 @@
 // False: lab experiment; True: online version
 var online_version = false;
-var chosen_options = []
-var roboName = ""
+var chosen_options = [];
+var roboName = "";
+var convStyle = "";
 // Generate random user id, a 6-digit value
-var user_id = Math.floor(Math.random() * 900000) + 100000;
-sessionStorage.setItem('user_id', user_id);
+// var user_id = Math.floor(Math.random() * 900000) + 100000;
+// sessionStorage.setItem('user_id', user_id);
 
 
 $(window).on('load', function () {
@@ -18,26 +19,10 @@ $(window).on('load', function () {
 
 })
 
-function get_attrs() {
-    roboName = document.getElementById("name").value;
-    gender = document.getElementById("gender");
-    gender = gender.options[gender.selectedIndex].value;
+$('.btn-conv').click(function(){
+    sessionStorage.setItem("convStyle", this.value);
+});
 
-    // store the info
-    sessionStorage.setItem("roboName", roboName);
-    sessionStorage.setItem("roboGender", gender);
-
-    if (!online_version) {
-        convStyle = document.getElementById("convStyle");
-        convStyle = convStyle.options[convStyle.selectedIndex].value;
-        sessionStorage.setItem("convStyle", convStyle);
-    }
-    else{
-        sessionStorage.setItem("convStyle", convStyle);
-    }
-
-    store_user_input();
-}
 
 function store_user_input() {
 

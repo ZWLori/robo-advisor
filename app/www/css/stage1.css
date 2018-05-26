@@ -323,6 +323,10 @@ msg-row {
     margin: 10px;
 }
 
+.btn-right {
+    float:right;
+}
+
 label {
     margin: 30px;
 
