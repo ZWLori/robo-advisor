@@ -18,7 +18,7 @@
 .robot-section{
     overflow: hidden;
     pointer-events: none;
-    padding: 3rem 1rem;
+    padding: 3rem 0 3rem 2rem;
     /*padding: 3rem 0rem;*/
 }
 
