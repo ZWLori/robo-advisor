@@ -30,9 +30,9 @@ function get_attrs() {
     convStyle = sessionStorage.getItem("convStyle");
     // change the avatar based on requirements
     if (convStyle == 'dominant')
-        $("#robo-image").attr("src", "images/avatar/D-RoboAdvisor.png");
+        $("#robo-image").attr("src", "images/avatar/D-Robo.png");
     else if (convStyle == 'submissive')
-        $("#robo-image").attr("src", "images/avatar/S-RoboAdvisor.png");
+        $("#robo-image").attr("src", "images/avatar/S-Robo.png");
     return convStyle;
 }
 
@@ -103,6 +103,7 @@ function remove_wait_animation(box) {
 
 //Create html element for options
 function create_options(content_list) {
+    $('html, body').animate({scrollTop:$(document).height()}, 'slow');
     html_str = "<div class='msg-row msg-right'>";
     for (c in content_list) {
         html_str += "<button class='btn btn-primary option' onclick=chose_opt(this)>" + content_list[c] + "</button>";
@@ -118,11 +119,13 @@ function chose_opt(ele) {
         return
     }
     $("#options").remove();
+    $('html, body').animate({scrollTop:$(document).height()}, 'slow');
     chosen_options.push(ele.innerText);
     right_chat_box= create_chat_box("right", ele.innerText);
     add_text(right_chat_box.box, right_chat_box.text);
 
     oneConvRound(convRoundCount);
+
 }
 
 async function simulate_delay(box) {

@@ -43,9 +43,9 @@ function get_attrs() {
     var convStyle = sessionStorage.getItem("convStyle");
     // change the avatar based on requirements
     if (convStyle == 'dominant')
-        $("#robo-image").attr("src", "images/avatar/D-RoboAdvisor.png");
+        $("#robo-image").attr("src", "images/avatar/D-Robo.png");
     else if (convStyle == 'submissive')
-        $("#robo-image").attr("src", "images/avatar/S-RoboAdvisor.png");
+        $("#robo-image").attr("src", "images/avatar/S-Robo.png");
 }
 
 for (i=0; i<totalInterval; i++){

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 
 .chat-background {
     /*position: absolute;*/
@@ -15,7 +16,7 @@
 
     /*height: calc(100vh - 200px);*/
     padding: 3rem 2rem;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 .chat-content {
@@ -280,21 +281,22 @@ msg-row {
 
 .option {
     border-radius: 5px;
-    padding: 5px;
+    padding: 8px;
     margin: 5px;
-    margin: 5px;
+    background-color: teal;
+    font-size: 14px;
+
+}
+
+.option:hover {
+    background-color: grey;
 }
 
 .msg-right .option {
     float: right;
 }
 
-.robo-img {
-    display: block;
-    margin: 20px auto;
-    width: 20%;
-    height: 20%;
-}
+
 
 
 /* Stage 0 buttons */
@@ -335,4 +337,20 @@ label {
 h5 {
     color: dimgrey;
     text-transform: uppercase;
+    margin-top: 30px;
+    line-height: 90%;
 }
+
+.user-description{
+    margin-top: 30px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 17px;
+}
+
+
+.container2{
+
+    overflow: auto;
+
+}
+
