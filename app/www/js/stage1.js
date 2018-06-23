@@ -29,10 +29,14 @@ $(window).on('load', function(){
 function get_attrs() {
     convStyle = sessionStorage.getItem("convStyle");
     // change the avatar based on requirements
-    if (convStyle == 'dominant')
+    if (convStyle == 'dominant'){
         $("#robo-image").attr("src", "images/avatar/D-Robo.png");
-    else if (convStyle == 'submissive')
+        $(".user-description").prepend("<b>Max</b>");
+    }
+    else if (convStyle == 'submissive'){
         $("#robo-image").attr("src", "images/avatar/S-Robo.png");
+        $(".user-description").prepend("<b>Linus</b>");
+    }
     return convStyle;
 }
 
