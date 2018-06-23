@@ -15,7 +15,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
             integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
             crossorigin="anonymous"></script>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="./js/canvasjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <link href="./css/roundslider.min.css" rel="stylesheet"/>
@@ -89,7 +89,7 @@
                     <div class="slide-container">
                         <h3></h3>
                         <!--<input type="range" min="1" max="100" value="50" class="slider" id="mySlider">-->
-                        <div id="slider"></div>
+                        <div id="slider"></div><p>
                         <button class="btn" onclick="confirm()">Confirm</button>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                     <div class="dashboard">
                         <h3 class="text-center">Summary</h3>
 
-                        <table class="table table-hover" style="margin-top: 20px;">
+                        <table class="table table-hover table-borderless" style="margin-top: 20px;">
                             <thead>
                             <tr>
                                 <th>Net Asset Value</th>
@@ -126,8 +126,8 @@
                                 <td id="6m-base"></td>
                             </tr>
                             </tbody>
-                        </table> <h5>Deposite: <span id="deposite"></span></h5>
-                        <h5>Net Asset Value: <span id="total-return"></span></h5>
+                        </table> <h6>Deposite: <span id="deposite"></span></h6><br>
+                        <h6>Net Asset Value: <span id="total-return"></span></h6>
                     </div>
                 </div>
             </div>

@@ -19,7 +19,7 @@ body, html {
 
 .chat-background{
     width: 100%;
-    background: rgba(207,217,218, 0.7);
+    background: white;
     /*height: auto;*/
     /*background-size: auto 100%;*/
 }
@@ -74,7 +74,7 @@ body, html {
 
 #chartContainer{
     /*height: 370px;*/
-    height: 400px;
+    height: 340px;
     margin: 0 auto;
 }
 
@@ -105,4 +105,14 @@ body, html {
 
 .mark-bar-region{
     margin-bottom: 3rem;
+}
+
+thead {
+   background-color: rgba(207, 217, 218, 0.7);
+}
+
+h6 {
+    font-weight: bold;
+    float: right;
+
 }
