@@ -328,7 +328,9 @@ msg-row {
 .btn-right {
     float:right;
 }
-
+.btn-left {
+    float:left;
+}
 label {
     margin: 30px;
 
