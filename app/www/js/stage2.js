@@ -164,9 +164,10 @@ function get_returns(mean, sd){
 
 function confirm(){
     if (monthIndex >= totalInterval) {
-        document.getElementById("demo").style.display = 'none';
-        document.getElementById("demo-eval").style.display = 'block';
-        return;
+      //  document.getElementById("demo").style.display = 'none';
+       // document.getElementById("demo-eval").style.display = 'block';
+       // return;
+        document.location.href = './stage3.html';
     }
 
     // range = slider.value;
@@ -228,3 +229,5 @@ function save(){
     })
     document.location.href = './stage3.html';
 }
+
+
