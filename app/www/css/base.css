@@ -145,10 +145,19 @@ nav{
 }
 
 #rangeValue {margin-top: 10px; display: inline-block;}
+
 .scaleNo{
-    margin: 30px 0 10px 0;
+    margin: 30px 0 3px 0;
 }
 
+.scaleWords{
+    margin: 3px 0 3px 0;
+}
+
+.ratingVal {
+    margin-top: 40px;
+    display: block;
+}
 
 /* Stage0.html */
 .studyChoice {
