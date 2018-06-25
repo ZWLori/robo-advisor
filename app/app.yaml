@@ -21,6 +21,10 @@ handlers:
   static_files: www/stage2.html
   upload: www/stage2.html
 
+- url: /stage3.html
+  static_files: www/stage3.html
+  upload: www/stage3.html
+
 - url: /js
   static_dir: www/js
 

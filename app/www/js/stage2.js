@@ -226,5 +226,5 @@ function save(){
         'user_gain_list': user,
         'performance': performanceLevelInt
     })
-    document.location.href = './exp.html';
+    document.location.href = './stage3.html';
 }
