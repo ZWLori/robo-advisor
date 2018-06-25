@@ -218,15 +218,80 @@ function calculatePastReturn(lst, index, num){
     }
 }
 
-function save(){
-    console.log("manipulation" + read_performance_slider_val());
+switch(parseInt(performanceLevelInt)){
+    // TODO: compute the cutoffs at the backend
+    case 0: 
+        cutoffs = [-5.5467974, -2.5195815, -0.6626316, 0.6107510, 1.5078318, 2.0771923, 2.8745512, 4.3143522, 7.0121577]
+        break;
+    case 1: 
+        cutoffs = [-1.912314, 0.442828, 1.622759, 2.202695, 2.947375, 3.982879, 5.399530, 7.411935, 10.713197]
+        break;
+    case 2: 
+        cutoffs = [2.059108, 2.885755, 3.906269, 5.115775, 6.518824, 8.189085, 10.246733, 12.942468, 17.007296]
+        break;
+}
+// Incentives schemes for participants
+function compute_incentives(quantile){
+    for (index in cutoffs){
+        cutoff = cutoffs[index]
+        if (cutoff >= quantile) {
+            percentage_range = cutoffs.indexOf(cutoff) + 1;
+            break;
+        }
+    }
+    // Incentive criteria (rounded to integer)
+    base = 5
+    if (percentage_range <= 1)
+	    return base
+    // When performance quantile is between 10 - 60%:
+    if (percentage_range <= 6)
+        return base * (1 + percentage_range * 0.1).toFixed(1)
+		// # 10 - 20% percentile: base*1.2
+		// # 20 - 30% percentile: base*1.3
 
+    // When performance quantile is between 60 - 95%:
+    if (percentage_range < 10)
+        return base * Math.pow((1+ percentage_range * 0.1), 2).toFixed(1)
+    
+    // When performance quantile is between 95 - 100%:
+    return base * Math.pow((1+ percentage_range * 0.1), 3).toFixed(1)
+}
+
+//  Simulated returns of robo-advisors by past performance
+// This function calculates the simulated returns for different scenarios
+function simulate_performance(monthly_return, variance, n) {
+	// simulating robo-advisor's performance, n denotes No. of simulations
+	robo_simulations = []; // initiate empty vector
+	for(i=0; i<n; i++) {
+        performance = get_returns(monthly_return, variance);
+        cum_performance = performance[totalInterval]; // overall performance by the final period
+        robo_simulations.push(cum_performance);
+	}
+	// return robo_simulations; // return vector values
+
+	// simulating weight-adjusted performance between robo and saving account
+	weight = 100; // the weight varies from 1% to 100%
+	total_simulations = [];
+
+	for (i =0; i<100; i++){
+	  total_simulations[i] = robo_simulations*i/100 + saving_returns*(100-i)/100;
+	}
+	return total_simulations;
+}
+
+function save(){
+    quantile = (totalGain - principle) / principle * 100;
+    totalIncentives = compute_incentives(quantile);
+    // TODO: check page content for storing the corresponding info
+    // save the necessary info for later reference
     $.post('/upload.php', {
-        'stage':'demo',
+        'stage':'exp',
         'id':sessionStorage.getItem('user_id'),
-        'user_gain_list': user,
-        'performance': performanceLevelInt
+        'user_gain_list':user,
+        'performance': performanceLevelInt,
+        'quantile':totalIncentives
     })
+    alert("Thanks a lot for your participation! Your total incentives are: " + totalIncentives);    
     document.location.href = './stage3.html';
 }
 

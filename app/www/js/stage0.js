@@ -3,9 +3,10 @@ var online_version = false;
 var chosen_options = [];
 var roboName = "";
 var convStyle = "";
+// TODO: change to Matric number
 // Generate random user id, a 6-digit value
-// var user_id = Math.floor(Math.random() * 900000) + 100000;
-// sessionStorage.setItem('user_id', user_id);
+var user_id = Math.floor(Math.random() * 900000) + 100000;
+sessionStorage.setItem('user_id', user_id);
 
 
 $(window).on('load', function () {
