@@ -23,6 +23,9 @@ $('.btn-conv').click(function(){
     sessionStorage.setItem("convStyle", this.value);
 });
 
+function store_matric_no() {
+    document.location.href = './stage0.html';
+}
 
 function store_user_input() {
 
@@ -47,3 +50,4 @@ function store_user_input() {
 
 
 }
+
