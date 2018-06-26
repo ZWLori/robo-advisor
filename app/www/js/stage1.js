@@ -31,11 +31,11 @@ function get_attrs() {
     // change the avatar based on requirements
     if (convStyle == 'dominant'){
         $("#robo-image").attr("src", "images/avatar/D-Robo.png");
-        $(".user-description").prepend("<b>Max</b>");
+        $(".user-description").prepend("<h3>Max</h3>");
     }
     else if (convStyle == 'submissive'){
         $("#robo-image").attr("src", "images/avatar/S-Robo.png");
-        $(".user-description").prepend("<b>Linus</b>");
+        $(".user-description").prepend("<h3>Linus</h3>");
     }
     return convStyle;
 }
