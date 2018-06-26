@@ -53,7 +53,9 @@ function store_user_input() {
 }
 
 
-
+function store_rating(){
+    document.location.href = './end.html';
+}
 
 /* For feedback slider */
 var slider = document.getElementById("myRange");

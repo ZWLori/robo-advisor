@@ -79,7 +79,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
         text: "Investment returns over time"
     },
     axisX: {
-        title: "Time Horizon",
+        title: "Time",
     },
     axisY: {
         title: "Net Asset Value",
