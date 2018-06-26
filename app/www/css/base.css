@@ -1,9 +1,10 @@
 body, html {
     padding: 0;
     margin: 0;
-    overflow: hidden;
-}
+    overflow: auto;
 
+}
+::-webkit-scrollbar {display:none;}
 *, ::after, ::before {
     box-sizing: border-box;
 }
@@ -241,4 +242,9 @@ nav{
 
 .conditionChoiceLbl {
     margin: 0 20px 0 20px;
+}
+
+.progress {
+    margin-left: 400px;
+    width: 40%;
 }
