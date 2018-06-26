@@ -289,7 +289,7 @@ function save(){
         'performance': performanceLevelInt,
         'quantile':totalIncentives
     })
-    alert("Thanks a lot for your participation! Your total incentives are: " + totalIncentives);
+    alert("Thanks a lot for your participation! Your total payment is: " + totalIncentives);
     document.location.href = './stage3.html';
 }
 
