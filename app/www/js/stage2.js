@@ -44,9 +44,10 @@ function get_attrs() {
     // change the avatar based on requirements
     if (convStyle == 'dominant')
         $("#robo-image").attr("src", "images/avatar/D-Robo.png");
+        $(".user-description").prepend("<b>Max</b>");
     else if (convStyle == 'submissive')
         $("#robo-image").attr("src", "images/avatar/S-Robo.png");
-}
+}       $(".user-description").prepend("<b>Linus</b>");
 
 for (i=0; i<totalInterval; i++){
     if (startM % 12 == 1){
@@ -217,13 +218,13 @@ function calculatePastReturn(lst, index, num){
 
 switch(parseInt(performanceLevelInt)){
     // TODO: compute the cutoffs at the backend
-    case 0: 
+    case 0:
         cutoffs = [-5.5467974, -2.5195815, -0.6626316, 0.6107510, 1.5078318, 2.0771923, 2.8745512, 4.3143522, 7.0121577]
         break;
-    case 1: 
+    case 1:
         cutoffs = [-1.912314, 0.442828, 1.622759, 2.202695, 2.947375, 3.982879, 5.399530, 7.411935, 10.713197]
         break;
-    case 2: 
+    case 2:
         cutoffs = [2.059108, 2.885755, 3.906269, 5.115775, 6.518824, 8.189085, 10.246733, 12.942468, 17.007296]
         break;
 }
@@ -249,7 +250,7 @@ function compute_incentives(quantile){
     // When performance quantile is between 60 - 95%:
     if (percentage_range < 10)
         return base * Math.pow((1+ percentage_range * 0.1), 2).toFixed(1)
-    
+
     // When performance quantile is between 95 - 100%:
     return base * Math.pow((1+ percentage_range * 0.1), 3).toFixed(1)
 }
@@ -288,7 +289,7 @@ function save(){
         'performance': performanceLevelInt,
         'quantile':totalIncentives
     })
-    alert("Thanks a lot for your participation! Your total incentives are: " + totalIncentives);    
+    alert("Thanks a lot for your participation! Your total incentives are: " + totalIncentives);
     document.location.href = './stage3.html';
 }
 
