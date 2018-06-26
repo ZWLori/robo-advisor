@@ -2,10 +2,10 @@
 var online_version = false;
 var container = $("#chatContainer");
 var chosen_options = [];
-var roboName = "";
 var roboScriptLst = [];
 var responseOptsLst = [];
 var convRoundCount = 0;
+var userInputs = [];
 
 $(window).on('load', function(){
     convStyle = get_attrs();
@@ -118,10 +118,12 @@ function create_options(content_list) {
 // Response after user chosing an option
 function chose_opt(ele) {
     if (ele.innerText == "I'm ready to proceed!") {
+        console.log(userInputs);
+        store_user_input();
         document.location.href = 'stage2.html';
-        // store the chosen options
         return
     }
+    userInputs.push(ele.innerText);
     $("#options").remove();
     $('html, body').animate({scrollTop:$(document).height()}, 'slow');
     chosen_options.push(ele.innerText);
@@ -146,16 +148,15 @@ function store_user_input() {
     try {
         $.post('/upload.php', {
             'stage': 'orientation',
-            'id': user_id,
-            'name': $("#user_name").val(),
-            'gender': $('#user_gender').find(':selected').text(),
-            'marital_status': $('#marital_status').find(':selected').text(),
-            'child_num': $('#child_num').find(':selected').text(),
-            'annual_income': $('#annual_income').val(),
-            'expectation': $('#user_exp').val()
+            'matricNum': sessionStorage.getItem('matricNum'),
+            'studyNum': sessionStorage.getItem('studyNum'),            
+            'convStyle': sessionStorage.getItem('convStyle'),
+            'userInput': userInputs
         })
+        console.log("this is a test");
     }
     catch(err) {
+        alert(err);
     }
 
 }

@@ -42,12 +42,16 @@ $(window).on('load', function(){
 function get_attrs() {
     var convStyle = sessionStorage.getItem("convStyle");
     // change the avatar based on requirements
-    if (convStyle == 'dominant')
+    if (convStyle == 'dominant') {
         $("#robo-image").attr("src", "images/avatar/D-Robo.png");
         $(".user-description").prepend("<h3>Max</h3>");
-    else if (convStyle == 'submissive')
+    }
+    else if (convStyle == 'submissive'){
         $("#robo-image").attr("src", "images/avatar/S-Robo.png");
-}       $(".user-description").prepend("<h3>Linus</h3>");
+        $(".user-description").prepend("<h3>Linus</h3>");
+    }
+}
+
 
 for (i=0; i<totalInterval; i++){
     if (startM % 12 == 1){
@@ -284,7 +288,7 @@ function save(){
     // save the necessary info for later reference
     $.post('/upload.php', {
         'stage':'exp',
-        'id':sessionStorage.getItem('user_id'),
+        'id':sessionStorage.getItem('matricNum'),
         'user_gain_list':user,
         'performance': performanceLevelInt,
         'quantile':totalIncentives
