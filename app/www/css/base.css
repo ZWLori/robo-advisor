@@ -6,7 +6,27 @@ body, html {
     overflow: auto;
 
 }
-::-webkit-scrollbar {display:none;}
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(175, 175, 175, 0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(200, 224, 219, 0.64);
+    -webkit-box-shadow: inset 0 0 6px rgba(172, 172, 172, 0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(170, 207, 255, 0.38);
+}
 *, ::after, ::before {
     box-sizing: border-box;
 }
