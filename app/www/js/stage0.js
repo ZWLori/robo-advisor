@@ -27,6 +27,6 @@ $('.btn-study').click(function(){
 
 function store_matric_no() {
     sessionStorage.setItem("matricNum", $('input').val());
-    document.location.href = "./stage0.html";
+    document.location.href = "./stage1.html";
 
 }
