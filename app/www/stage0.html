@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/stage1.css">
 
-    <title>Stage 0</title>
+    <title>Home</title>
 </head>
 <body><header>
 <nav class="navbar navbar-expand-md navbar-light fixed-top">
@@ -29,50 +29,35 @@
 
 <main class="container-fluid">
     <div class="row page-content page-background justify-content-center">
-    <div class="col-sm-12 col-lg-8 col-md-10">
-        <div id="attrForm" style="margin: 40px auto;">
-            <div  class="form-group" id="expIndex" ><center>
-                <label>Please select study:</label>
-                <div class="studyChoice">
-                    <label class ="studyChoiceLbl">
-                        <input type="radio" name="radio1"/><span>1</span>
-                    </label>
-                    <label class ="studyChoiceLbl">
-                        <input type="radio" name="radio1"/><span>2</span>
-                    </label></div>
+        <div class="col-sm-12 col-lg-8 col-md-10">
+            <div id="attrForm" style="margin: 40px auto;">
+                <div  class="form-group " ><center>
+                    <div class="col-sm-6">  <label>Please enter your matric number: </label>
+                   <input type="text" class="form-control" >
+                    </div><p>
 
-            </center><p>
-                <center>
-                    <label>Please select condition:</label>
-                <div class="conditionChoice">
-                    <label class ="conditionChoiceLbl">
-                        <input class="btn-conv" type="radio" name="radio2" value ="dominant"/><span>D</span>
-                    </label>
-                    <label class ="conditionChoiceLbl">
-                        <input class= "btn-conv" type="radio" name="radio2" value ="submissive"/><span>S</span>
-                    </label></div>
-                <br>
-
-                <button  class="btn btn-default btn-right" onclick="store_user_input()">Next</button>
+                    <button  class="btn btn-default btn-right" onclick="store_matric_no()">Next</button>
 
             </div>
 
+            </div>
         </div>
-    </div>
     </div>
 
 
 </main>
+
 <div class="footer">
     <div class="progress_container">
         <div class="progress progress-danger
      progress-striped active">
             <div class="bar"
-                 style="width: 10%;">10%</div>
+                 style="width: 5%;">5%</div>
         </div>
 
     </div>
 </div>
+
 <script src="js/stage0.js"></script>
 </body>
 </html>

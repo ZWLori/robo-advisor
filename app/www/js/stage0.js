@@ -25,7 +25,7 @@ $('.btn-conv').click(function(){
 });
 
 function store_matric_no() {
-    document.location.href = './stage0.html';
+    document.location.href = './stage1.html';
 }
 
 function store_user_input() {
@@ -43,10 +43,10 @@ function store_user_input() {
 
         })
 
-        document.location.href = './stage1.html';
+        document.location.href = './stage0.html';
     }
     catch(err) {
-        document.location.href = './stage1.html';
+        document.location.href = './stage0.html';
     }
 
 
@@ -54,7 +54,7 @@ function store_user_input() {
 
 
 function store_rating(){
-    document.location.href = './end.html';
+    document.location.href = './stage4.html';
 }
 
 /* For feedback slider */
