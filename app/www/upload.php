@@ -9,6 +9,16 @@ require __DIR__ . '/vendor/autoload.php';
 // Obtain data
 $data = '';
 foreach($_POST as $key => $value) {
+    if (is_array($value)) {
+        $arrayValue = '[';
+        foreach($value as $ele) {
+            $arrayValue = $arrayValue.';'.$ele;
+        } 
+        $arrayValue = $arrayValue.']';
+        $arrayValue[1] = '';
+        echo "<script>console.log( 'Debug Objects: " . $arrayValue . "' );</script>";        
+        $value = $arrayValue;
+    }
     $data = $data.','.$value;
 }
 

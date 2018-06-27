@@ -118,7 +118,6 @@ function create_options(content_list) {
 // Response after user chosing an option
 function chose_opt(ele) {
     if (ele.innerText == "I'm ready to proceed!") {
-        console.log(userInputs);
         store_user_input();
         document.location.href = 'stage2.html';
         return
@@ -153,7 +152,6 @@ function store_user_input() {
             'convStyle': sessionStorage.getItem('convStyle'),
             'userInput': userInputs
         })
-        console.log("this is a test");
     }
     catch(err) {
         alert(err);

@@ -15,13 +15,11 @@ $(window).on('load', function () {
 })
 
 $('.btn-conv').click(function(){
-    console.log(this.value);
     sessionStorage.setItem("convStyle", this.value);
 });
 
 
 $('.btn-study').click(function(){
-    console.log(this.value);
     sessionStorage.setItem("studyNum", this.value);
 })
 
