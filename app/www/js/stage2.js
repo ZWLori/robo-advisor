@@ -284,16 +284,16 @@ function simulate_performance(monthly_return, variance, n) {
 function save(){
     quantile = (totalGain - principle) / principle * 100;
     totalIncentives = compute_incentives(quantile);
+    sessionStorage.setItem('totalIncentives', totalIncentives);
     // TODO: check page content for storing the corresponding info
     // save the necessary info for later reference
     $.post('/upload.php', {
         'stage':'exp',
-        'id':sessionStorage.getItem('matricNum'),
+        'matric_number':sessionStorage.getItem('matricNum'),
         'user_gain_list':user,
         'performance': performanceLevelInt,
         'quantile':totalIncentives
     })
-    alert("Thanks a lot for your participation! Your total payment is: " + totalIncentives);
     document.location.href = './stage3.html';
 }
 
