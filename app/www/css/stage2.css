@@ -82,6 +82,29 @@ body, html {
     text-align: center;
 }
 
+.titleHr {
+    border-top: 4px solid #496b81;
+    width: 40px;
+
+}
+
+.legendDiv {
+    margin: 0 auto;
+    overflow: hidden;
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    float: none;
+    width: 100%;
+}
+.legend { list-style: none; margin: 30px 0 30px 0; padding: 0px;}
+.legend ul { text-align: center;
+}
+.legend span { border: 1px solid #ccc; float: left; width: 16px; height: 12px; margin-right: 10px; }
+/* your colors */
+.legend .robo { margin-top: 5px; background-color: #fff; }
+.legend .savings { margin-top: 5px; background-color: rgba(207, 217, 218, 0.7); }
+
 /*for the round slider to center in parent div*/
 .rs-control {
     margin: 35px auto 25px !important;
@@ -116,3 +139,8 @@ h6 {
     float: right;
 
 }
+
+.user-description {
+   margin: 20px 0 50px 0;
+}
+
