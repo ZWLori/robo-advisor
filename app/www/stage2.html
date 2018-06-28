@@ -50,15 +50,7 @@
             <div class="robot-content-top">
                 <div style="background: white; padding: 1rem 1rem;">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec varius erat. Vivamus
-                        laoreet risus at rhoncus ornare. Maecenas dui orci, dictum ut urna eget, pharetra malesuada
-                        nunc. Praesent velit lorem, bibendum vel accumsan sed, aliquam at erat. Interdum et malesuada
-                        fames ac ante ipsum primis in faucibus.
-
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec varius erat. Vivamus
-                        laoreet risus at rhoncus ornare. Maecenas dui orci, dictum ut urna eget, pharetra malesuada
-                        nunc. Praesent velit lorem, bibendum vel accumsan sed, aliquam at erat. Interdum et malesuada
-                        fames
+                    <ul id="messages"></ul>
                     </p>
 
                 </div>
@@ -186,5 +178,15 @@
 </div>
 
 <script src="js/stage2.js"></script>
+<script>
+    var messages = ['Hi, this is my first messageeee', 'Hello, this is my second message', 'Message message message', 'Message message message', 'Message message message', 'Message message message', 'Message message message', 'Message message message', 'Message message message']
+
+    $('#messages').chatBubble({
+        messages: messages,
+        typingSpeed: 5000
+    });
+
+
+</script>
 </body>
 </html>

@@ -51,9 +51,12 @@ body, html {
 
 .robot-content-top{
     margin: 0 auto;
+    height: 440px;
     position: relative;
-    background: #00aabb;
-
+    background: #fff;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1;
 
     /*position: absolute;*/
     /*top: 10%;*/
@@ -70,6 +73,7 @@ body, html {
     border-bottom: 10px solid transparent;
     left: 19px;
     bottom: -19px;
+
 }
 
 #chartContainer{
@@ -143,4 +147,77 @@ h6 {
 .user-description {
    margin: 20px 0 50px 0;
 }
+
+.cb__list {
+    padding: 0;
+    list-style-type: none;
+    font-family: sans-serif;
+    width: 320px;
+    margin: 0 auto;
+    overflow: hidden; }
+
+.cb__list .bubble {
+    display: inline-block;
+    padding: 9px 14px;
+    max-width: 65%;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-size: 14px;
+    line-height: 24px;
+    background: white;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    -webkit-box-shadow: 5px 5px 15px 0 rgba(102, 102, 102, 0.1);
+    box-shadow: 5px 5px 15px 0 rgba(102, 102, 102, 0.1);
+    -webkit-transition: width .12s ease-out, height .12s ease-out;
+    transition: width .12s ease-out, height .12s ease-out;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); }
+
+.cb__list .bubble.typing {
+    animation: cb-font-fade 5s ease-in-out infinite; }
+
+
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 3px;
+    background: #303131;
+    -webkit-animation-name: fadecolor;
+    -webkit-animation-duration: 4s;
+    animation-name: fadecolor;
+    animation-duration: 4s;}
+
+
+:nth-child(2) {
+    animation-delay: -1.1s; }
+
+
+:nth-child(3) {
+    animation-delay: -0.9s;
+}
+
+
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes fadecolor {
+    from {background-color: #477980;}
+    to {background-color: #ffffff;}
+}
+
+/* Standard syntax */
+@keyframes fadecolor {
+    from {background-color: #477980;}
+    to {background-color: #ffffff;}
+}
+
+@keyframes cb-font-fade {
+    50% {
+        color: transparent; }
+    100% {
+        color: inherit; } }
+
 
