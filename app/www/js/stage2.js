@@ -1,6 +1,6 @@
 
 var monthIndex = 0;
-var totalInterval = 12;  // Investment horizon
+var totalInterval = 24;  // Investment horizon
 var startY = 2016, startM = 1;
 var principle = totalGain = 10000;
 var low_mean = -0.03, low_var = 2.661;
@@ -9,11 +9,38 @@ var high_mean = 1.158, high_var = 2.661;
 var base_mean = 0.125;
 var rangeLst = []; // store the user selected range value
 var robo = [] // the returns from robo-advisor
-var base = get_returns(base_mean, 0) // Fixed: annualized return
+var base = get_returns(base_mean, 0, totalInterval) // Fixed: annualized return
 var user = [] // the returns for user TODO: fill-in the list
 // datapoints
 var dps_user = [], dps_base = [], dps_robo = [];
 
+// performance level: 0 - "low", 1 - "medium", 2 -"high"
+if (sessionStorage.getItem("studyNum") == 1){
+    var performanceLevelLst = [1,1]
+}
+else if (sessionStorage.getItem("studyNum") == 2){
+    randNum = Math.floor(Math.random() * 2);
+    if (randNum == 0) // deteriorated performance
+        var performanceLevelLst = [1,0]
+    else    // improved performance
+        var performanceLevelLst = [1,2]
+}
+    
+sessionStorage.setItem("performanceLevelLst", performanceLevelLst);
+
+// Generate robo-advisor return based on performance
+for (index=0; index<2; index++){
+    console.log(performanceLevelLst[index]);
+    switch(performanceLevelLst[index]) {
+        // Low: annualized return = 6% +- 4%
+        case 0 : robo = robo.concat(get_returns(low_mean, low_var, totalInterval/2)); break; 
+        // Medium: annualized return = 10% +- 4%
+        case 1 : robo = robo.concat(get_returns(medium_mean, medium_var, totalInterval/2)); break; 
+        // High: annualized return = 18% +- 4%
+        case 2 : robo = robo.concat(get_returns(high_mean, high_var, totalInterval/2)); break; 
+    }
+}
+console.log(robo.length);
 
 // add slider
 $("#slider").roundSlider({
@@ -33,6 +60,16 @@ $("#performance-slider").roundSlider({
     width: 25,
     sliderType: "min-range"
 });
+
+function read_slider_val(){
+    var slider_obj = $("#slider").data("roundSlider");
+    return slider_obj.option("value");
+}
+
+function read_performance_slider_val(){
+    var slider_obj = $("#performance-slider").data("roundSlider");
+    return slider_obj.option("value");
+}
 
 
 $(window).on('load', function(){
@@ -64,21 +101,6 @@ for (i=0; i<totalInterval; i++){
     dps_robo.push({x:new Date(startY, startM-1)})
     startM += 1;
 }
-
-function read_slider_val(){
-    var slider_obj = $("#slider").data("roundSlider");
-    return slider_obj.option("value");
-}
-
-function read_performance_slider_val(){
-    var slider_obj = $("#performance-slider").data("roundSlider");
-    return slider_obj.option("value");
-}
-
-var performanceLevelInt = Math.floor(Math.random() * 3);
-// performance level: 0 - "low", 1 - "medium", 2 -"high"
-sessionStorage.setItem("performanceLevel", performanceLevelInt);
-console.log("performance level: " + performanceLevelInt);
 
 var chart = new CanvasJS.Chart("chartContainer", {
     title :{
@@ -113,14 +135,6 @@ var chart = new CanvasJS.Chart("chartContainer", {
     ]
 });
 chart.render();
-
-var robo = []
-var base = get_returns(base_mean, 0) // Fixed: annualized return
-switch(performanceLevelInt) {
-    case 0 : robo = get_returns(low_mean, low_var); break; // Low: annualized return = 6% +- 4%
-    case 1 : robo = get_returns(medium_mean, medium_var); break; // Medium: annualized return = 10% +- 4%
-    case 2 : robo = get_returns(high_mean, high_var); break; // High: annualized return = 18% +- 4%
-}
 
 // update the chart with corresponding return values
 function updateChart(index) {
@@ -157,8 +171,8 @@ function normal_random(n, mean, variance) {
     return result;
 }
 
-function get_returns(mean, sd){
-    var rnorm = normal_random(n=totalInterval, mean=mean, sd=sd)
+function get_returns(mean, sd, n){
+    var rnorm = normal_random(n=n, mean=mean, sd=sd)
     var cumsum = [];
     rnorm.reduce(function(a,b,i) { return cumsum[i] = a+b; },0);
     cumsum.forEach(function(element, index) {
@@ -290,7 +304,8 @@ function calculatePastReturn(lst, index, num){
 
 }
 
-switch(parseInt(performanceLevelInt)){
+// TODO: change the cutoffs
+switch(parseInt(performanceLevelLst[0])){
     // TODO: compute the cutoffs at the backend
     case 0:
         cutoffs = [-5.5467974, -2.5195815, -0.6626316, 0.6107510, 1.5078318, 2.0771923, 2.8745512, 4.3143522, 7.0121577]
@@ -335,7 +350,7 @@ function simulate_performance(monthly_return, variance, n) {
 	// simulating robo-advisor's performance, n denotes No. of simulations
 	robo_simulations = []; // initiate empty vector
 	for(i=0; i<n; i++) {
-        performance = get_returns(monthly_return, variance);
+        performance = get_returns(monthly_return, variance, totalInterval);
         cum_performance = performance[totalInterval]; // overall performance by the final period
         robo_simulations.push(cum_performance);
 	}
@@ -361,7 +376,7 @@ function save(){
         'stage':'exp',
         'matric_number':sessionStorage.getItem('matricNum'),
         'user_gain_list':user,
-        'performance': performanceLevelInt,
+        'performance': performanceLevelLst,
         'quantile':totalIncentives
     })
     document.location.href = './stage3.html';
