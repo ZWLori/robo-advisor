@@ -5,11 +5,11 @@ function verification(){
         $.post('/upload.php',{
             'stage': 'final',
             'matric_number': sessionStorage.getItem('matricNum'),
-            'total_incentives': sessionStorage.getItem('totalIncentives'),
+            'bonus': sessionStorage.getItem('bonus'),
             'rating': sessionStorage.getItem('rating')
         })
         document.location.href = './end.html'
     }
 }
 
-$("#bonus").text(sessionStorage.getItem('totalIncentives'));
+$("#bonus").text(sessionStorage.getItem('bonus'));

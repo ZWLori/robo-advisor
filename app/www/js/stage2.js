@@ -13,17 +13,26 @@ var base = get_returns(base_mean, 0, totalInterval) // Fixed: annualized return
 var user = [] // the returns for user TODO: fill-in the list
 // datapoints
 var dps_user = [], dps_base = [], dps_robo = [];
+// cap values
+var max_bonus = 10, min_bonus = 2;
+// bonus convertion ratios
+var conver_ratio1 = 1/200, conver_ratio_increase = 1/200, conver_ratio_decrease = 1/600;
 
 // performance level: 0 - "low", 1 - "medium", 2 -"high"
 if (sessionStorage.getItem("studyNum") == 1){
-    var performanceLevelLst = [1,1]
+    var performanceLevelLst = [1,1];
+    var conver_ratio = 1/200;
 }
 else if (sessionStorage.getItem("studyNum") == 2){
     randNum = Math.floor(Math.random() * 2);
-    if (randNum == 0) // deteriorated performance
+    if (randNum == 0){ // deteriorated performance
         var performanceLevelLst = [1,0]
-    else    // improved performance
+        var conver_ratio = 1/200;
+    }
+    else  {  // improved performance
         var performanceLevelLst = [1,2]
+        var conver_ratio = 1/600;
+    }
 }
     
 sessionStorage.setItem("performanceLevelLst", performanceLevelLst);
@@ -223,7 +232,7 @@ function confirm(){
         document.getElementById("6m-base").innerHTML = calculatePastReturn(base, monthIndex, 5);
         document.getElementById("6m-user").innerHTML = calculatePastReturn(user, monthIndex, 5);
     }
-    
+
     monthIndex += 1;
 }
 
@@ -305,10 +314,21 @@ function simulate_performance(monthly_return, variance, n) {
 	return total_simulations;
 }
 
+function compute_bonus() {
+    earn = totalGain - principle;
+    bonus = Math.round(conver_ratio * earn);
+    if (bonus < min_bonus)
+        return min_bonus
+    else if (bonus > max_bonus)
+        return max_bonus
+    return bonus
+}
+
 function save(){
-    quantile = (totalGain - principle) / principle * 100;
-    totalIncentives = compute_incentives(quantile);
-    sessionStorage.setItem('totalIncentives', totalIncentives);
+    // quantile = (totalGain - principle) / principle * 100;
+    // totalIncentives = compute_incentives(quantile);
+    bonus = compute_bonus();    
+    sessionStorage.setItem('bonus', bonus);
     // TODO: check page content for storing the corresponding info
     // save the necessary info for later reference
     $.post('/upload.php', {
@@ -316,11 +336,9 @@ function save(){
         'matric_number':sessionStorage.getItem('matricNum'),
         'user_gain_list':user,
         'performance': performanceLevelLst,
-        'quantile':totalIncentives
     })
     document.location.href = './stage3.html';
 }
-
 
 
 ;(function ( $, window, document, undefined ) {
