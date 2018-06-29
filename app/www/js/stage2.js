@@ -208,99 +208,38 @@ function confirm(){
     rangeLst.push(range);
     updateChart(monthIndex);
 
-    if (calculatePastReturn(robo, monthIndex, 1) < 0) {
-        document.getElementById("1m-robo").style.color = "#d40f00";
-    }
-    else {
-        document.getElementById("1m-robo").style.color = "#63a863";
-    }
-
-    if (calculatePastReturn(base, monthIndex, 1) < 0) {
-        document.getElementById("1m-base").style.color = "#d40f00";
-    }
-    else {
-        document.getElementById("1m-base").style.color = "#63a863";
-    }
-
-    if (calculatePastReturn(user, monthIndex, 1) < 0) {
-        document.getElementById("1m-user").style.color = "#d40f00";
-    }
-    else {
-        document.getElementById("1m-user").style.color = "#63a863";
-    }
-
     document.getElementById("1m-robo").innerHTML = calculatePastReturn(robo, monthIndex, 1);
     document.getElementById("1m-base").innerHTML = calculatePastReturn(base, monthIndex, 1);
     document.getElementById("1m-user").innerHTML = calculatePastReturn(user, monthIndex, 1);
 
-
-
     if(monthIndex >= 2){
-        if (calculatePastReturn(robo, monthIndex, 2) < 0) {
-            document.getElementById("3m-robo").style.color = "#d40f00";
-        }
-        else {
-            document.getElementById("3m-robo").style.color = "#63a863";
-        }
-
-        if (calculatePastReturn(base, monthIndex, 2) < 0) {
-            document.getElementById("3m-base").style.color = "#d40f00";
-        }
-        else {
-            document.getElementById("3m-base").style.color = "#63a863";
-        }
-
-        if (calculatePastReturn(user, monthIndex, 2) < 0) {
-            document.getElementById("3m-user").style.color = "#d40f00";
-        }
-        else {
-            document.getElementById("3m-user").style.color = "#63a863";
-        }
-
-
         document.getElementById("3m-robo").innerHTML = calculatePastReturn(robo, monthIndex, 2);
         document.getElementById("3m-base").innerHTML = calculatePastReturn(base, monthIndex, 2);
         document.getElementById("3m-user").innerHTML = calculatePastReturn(user, monthIndex, 2);
     }
+
     if(monthIndex >= 5){
-
-        if (calculatePastReturn(robo, monthIndex, 5) < 0) {
-            document.getElementById("6m-robo").style.color = "#d40f00";
-        }
-        else {
-            document.getElementById("6m-robo").style.color = "#63a863";
-        }
-
-        if (calculatePastReturn(base, monthIndex, 5) < 0) {
-            document.getElementById("6m-base").style.color = "#d40f00";
-        }
-        else {
-            document.getElementById("6m-base").style.color = "#63a863";
-        }
-
-        if (calculatePastReturn(user, monthIndex, 5) < 0) {
-            document.getElementById("6m-user").style.color = "#d40f00";
-        }
-        else {
-            document.getElementById("6m-user").style.color = "#63a863";
-        }
-
         document.getElementById("6m-robo").innerHTML = calculatePastReturn(robo, monthIndex, 5);
         document.getElementById("6m-base").innerHTML = calculatePastReturn(base, monthIndex, 5);
         document.getElementById("6m-user").innerHTML = calculatePastReturn(user, monthIndex, 5);
     }
+    
     monthIndex += 1;
 }
 
 function calculatePastReturn(lst, index, num){
     if (index){
         pastReturn = lst[index] - lst[index-num];
-        return (pastReturn/lst[index-num]*100).toFixed(3);
+        val =  (pastReturn/lst[index-num]*100).toFixed(3);
     }
     else {
         pastReturn = lst[index] - principle;
-        return (pastReturn/principle*100).toFixed(3);
+        val = (pastReturn/principle*100).toFixed(3);
     }
+    if (val < 0)
+        return "<p style='color:#d40f00'>" + val + "</p>" 
+    else
+        return "<p style='color:#63a863'>" + val + "</p>"
 
 }
 
