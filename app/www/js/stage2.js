@@ -17,6 +17,13 @@ var dps_user = [], dps_base = [], dps_robo = [];
 var max_bonus = 10, min_bonus = 2;
 // bonus convertion ratios
 var conver_ratio1 = 1/200, conver_ratio_increase = 1/200, conver_ratio_decrease = 1/600;
+// robo message lists
+var messages = ['Hi, this is my first messageeee'];
+// underperform / balance / outperform
+var up, bp, op;
+
+var convStyle = sessionStorage.getItem("convStyle");
+
 
 // performance level: 0 - "low", 1 - "medium", 2 -"high"
 if (sessionStorage.getItem("studyNum") == 1){
@@ -39,7 +46,6 @@ sessionStorage.setItem("performanceLevelLst", performanceLevelLst);
 
 // Generate robo-advisor return based on performance
 for (index=0; index<2; index++){
-    console.log(performanceLevelLst[index]);
     switch(performanceLevelLst[index]) {
         // Low: annualized return = 6% +- 4%
         case 0 : robo = robo.concat(get_returns(low_mean, low_var, totalInterval/2)); break; 
@@ -49,7 +55,6 @@ for (index=0; index<2; index++){
         case 2 : robo = robo.concat(get_returns(high_mean, high_var, totalInterval/2)); break; 
     }
 }
-console.log(robo.length);
 
 // add slider
 $("#slider").roundSlider({
@@ -83,11 +88,24 @@ function read_performance_slider_val(){
 
 $(window).on('load', function(){
     get_attrs();
+    if (convStyle == "dominant")
+        file = "scripts/dominant.json"
+    else
+        file = "scripts/submissive.json"
+    $.getJSON(file, "", function(data){
+        $.each(data["experiment"], function (infoIndex, info){
+            if (infoIndex == 'underperform')
+                up = info[0];
+            else if (infoIndex == 'outperform')
+                op = info[0];
+            else
+                bp = info[0];
+        })        
+    });
 
 });
 
 function get_attrs() {
-    var convStyle = sessionStorage.getItem("convStyle");
     // change the avatar based on requirements
     if (convStyle == 'dominant') {
         $("#robo-image").attr("src", "images/avatar/D-Robo.png");
@@ -232,6 +250,15 @@ function confirm(){
         document.getElementById("6m-base").innerHTML = calculatePastReturn(base, monthIndex, 5);
         document.getElementById("6m-user").innerHTML = calculatePastReturn(user, monthIndex, 5);
     }
+    // update messages
+    if ($("#1m-user").text() > 0)
+        messages.push(op[monthIndex]);
+    else if ($("#1m-user").text() < 0)
+        messages.push(up[monthIndex]);
+    else
+        messages.push(bp[monthIndex]);
+    console.log(messages);
+    // TODO insert the new message into the bubble conversation list
 
     monthIndex += 1;
 }
@@ -340,6 +367,9 @@ function save(){
     document.location.href = './stage3.html';
 }
 
+// ==========================================================
+// ====================== Chat Bubble =======================
+// ==========================================================
 
 ;(function ( $, window, document, undefined ) {
 
@@ -418,3 +448,8 @@ function save(){
     };
 
 })( jQuery, window, document );
+
+$('#messages').chatBubble({
+    messages: messages,
+    typingSpeed: 5000
+});
