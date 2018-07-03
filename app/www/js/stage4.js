@@ -13,3 +13,9 @@ function verification(){
 }
 
 $("#bonus").text(sessionStorage.getItem('bonus'));
+
+if (sessionStorage.getItem("online"))
+    $("#uniqueId").text("Your auto-generated ID is " + sessionStorage.getItem("matricNum") + " .");
+else
+    $("#uniqueId").text("Your ID would be the same as your matric number.");
+    
