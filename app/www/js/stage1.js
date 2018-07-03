@@ -147,7 +147,7 @@ function timeout (ms) {
 
 function store_user_input() {
     if (sessionStorage.getItem('online'))
-        studyNum = None;
+        studyNum = '';
     else
         studyNum = sessionStorage.getItem('studyNum');
     try {

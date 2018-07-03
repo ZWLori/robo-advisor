@@ -41,6 +41,11 @@ else if (sessionStorage.getItem("studyNum") == 2){
         var conver_ratio = 1/600;
     }
 }
+// for online pilot 
+else {
+    var performanceLevelLst = [1,1];
+    var conver_ratio = 1/200;
+}
     
 sessionStorage.setItem("performanceLevelLst", performanceLevelLst);
 
