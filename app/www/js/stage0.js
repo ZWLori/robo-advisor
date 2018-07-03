@@ -1,16 +1,20 @@
 // False: lab experiment; True: online version
-var online_version = false;
+var online_version = true;
 var chosen_options = [];
-var convStyle = "";
 
 $(window).on('load', function () {
     if (online_version) {
         rand_int = Math.random() > 0.5 ? 1 : 0;
         if (rand_int)
-            var convStyle = 'submissive';
+            sessionStorage.setItem('convStyle', 'submissive');
         else
-            var convStyle = 'dominant';
+            sessionStorage.setItem('convStyle', 'dominant');
+        sessionStorage.setItem('online', online_version);
+        sessionStorage.setItem('matricNum', (Math.floor(Math.random()*900000) + 100000));
+        document.location.href = "./stage1.html";
     }
+    else 
+        $('#attrForm').css('display', 'block');
 
 })
 

@@ -123,6 +123,8 @@ function chose_opt(ele) {
         return
     }
     userInputs.push(ele.innerText);
+    $(ele).attr("disabled", "disabled");
+    $(ele).siblings().attr("disabled", "disabled");
     $("#options").remove();
     $('html, body').animate({scrollTop:$(document).height()}, 'slow');
     chosen_options.push(ele.innerText);
@@ -144,11 +146,16 @@ function timeout (ms) {
 }
 
 function store_user_input() {
+    if (sessionStorage.getItem('online'))
+        studyNum = None;
+    else
+        studyNum = sessionStorage.getItem('studyNum');
     try {
         $.post('/upload.php', {
             'stage': 'orientation',
+            'online': sessionStorage.getItem('online'),
             'matricNum': sessionStorage.getItem('matricNum'),
-            'studyNum': sessionStorage.getItem('studyNum'),            
+            'studyNum': studyNum,            
             'convStyle': sessionStorage.getItem('convStyle'),
             'userInput': userInputs
         })
