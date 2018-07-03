@@ -18,7 +18,7 @@ var max_bonus = 10, min_bonus = 2;
 // bonus convertion ratios
 var conver_ratio1 = 1/200, conver_ratio_increase = 1/200, conver_ratio_decrease = 1/600;
 // robo message lists
-var messages = ['Hi, this is my first messageeee'];
+
 // underperform / balance / outperform
 var up, bp, op;
 
@@ -375,7 +375,6 @@ function save(){
 // ==========================================================
 // ====================== Chat Bubble =======================
 // ==========================================================
-
 ;(function ( $, window, document, undefined ) {
 
     var chatBubble = "chatBubble",
@@ -453,8 +452,3 @@ function save(){
     };
 
 })( jQuery, window, document );
-
-$('#messages').chatBubble({
-    messages: messages,
-    typingSpeed: 5000
-});
