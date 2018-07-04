@@ -7,6 +7,11 @@ body, html {
 
 }
 
+.btn {
+    background-color: teal;
+    color: white;
+}
+
 h4 {
     font-size: 1.2em !important;
 }
@@ -64,7 +69,7 @@ nav{
 
 .avatar-img{
    /* border-radius: 50%; */
-    width: 90%;
+    max-width: 90%;
     margin: 50px 0 0 50px;
 }
 
