@@ -24,6 +24,10 @@ var up, bp, op;
 
 var convStyle = sessionStorage.getItem("convStyle");
 
+// Message Box
+var msgContainer = $("#messageContainer");
+var confirmCount = 0;
+var messages = [];
 
 // performance level: 0 - "low", 1 - "medium", 2 -"high"
 if (sessionStorage.getItem("studyNum") == 1){
@@ -41,23 +45,23 @@ else if (sessionStorage.getItem("studyNum") == 2){
         var conver_ratio = 1/600;
     }
 }
-// for online pilot 
+// for online pilot
 else {
     var performanceLevelLst = [1,1];
     var conver_ratio = 1/200;
 }
-    
+
 sessionStorage.setItem("performanceLevelLst", performanceLevelLst);
 
 // Generate robo-advisor return based on performance
 for (index=0; index<2; index++){
     switch(performanceLevelLst[index]) {
         // Low: annualized return = 6% +- 4%
-        case 0 : robo = robo.concat(get_returns(low_mean, low_var, totalInterval/2)); break; 
+        case 0 : robo = robo.concat(get_returns(low_mean, low_var, totalInterval/2)); break;
         // Medium: annualized return = 10% +- 4%
-        case 1 : robo = robo.concat(get_returns(medium_mean, medium_var, totalInterval/2)); break; 
+        case 1 : robo = robo.concat(get_returns(medium_mean, medium_var, totalInterval/2)); break;
         // High: annualized return = 18% +- 4%
-        case 2 : robo = robo.concat(get_returns(high_mean, high_var, totalInterval/2)); break; 
+        case 2 : robo = robo.concat(get_returns(high_mean, high_var, totalInterval/2)); break;
     }
 }
 
@@ -105,9 +109,9 @@ $(window).on('load', function(){
                 op = info[0];
             else
                 bp = info[0];
-        })        
+        })
     });
-
+    $('.rs-tooltip-text').after("<div id='percentageSign'>%</div>");
 });
 
 function get_attrs() {
@@ -262,10 +266,33 @@ function confirm(){
         messages.push(up[monthIndex]);
     else
         messages.push(bp[monthIndex]);
-    console.log(messages);
-    // TODO insert the new message into the bubble conversation list
 
+    // Insert the new message into the bubble conversation list
+    if (messages[confirmCount])
+        insertMessage(messages[confirmCount]);
+    confirmCount += 1;
     monthIndex += 1;
+}
+
+// Create HTML message bubble
+function create_msg_bubble(side, content) {
+    box = document.createElement("div");
+    text = document.createElement("div");
+    text.innerHTML = content;
+    box.className = "msg-row msg-left";
+    text.className = "msg msg-bounce-in-left";
+    msgContainer.append(box);
+    return {
+        "box": box,
+        "text": text
+    };
+}
+
+// Insert message bubble into chatbox
+function insertMessage(message) {
+    box = create_msg_bubble("left", message);
+    box.box.appendChild(box.text);
+    $('.robot-content-top').stop().animate({scrollTop: msgContainer.height()}, 'slow');
 }
 
 function calculatePastReturn(lst, index, num){
@@ -278,7 +305,7 @@ function calculatePastReturn(lst, index, num){
         val = (pastReturn/principle*100).toFixed(3);
     }
     if (val < 0)
-        return "<p style='color:#d40f00'>" + val + "</p>" 
+        return "<p style='color:#d40f00'>" + val + "</p>"
     else
         return "<p style='color:#63a863'>" + val + "</p>"
 
@@ -359,7 +386,7 @@ function compute_bonus() {
 function save(){
     // quantile = (totalGain - principle) / principle * 100;
     // totalIncentives = compute_incentives(quantile);
-    bonus = compute_bonus();    
+    bonus = compute_bonus();
     sessionStorage.setItem('bonus', bonus);
     // TODO: check page content for storing the corresponding info
     // save the necessary info for later reference
@@ -370,85 +397,4 @@ function save(){
         'performance': performanceLevelLst,
     })
     document.location.href = './stage3.html';
-}
-
-// ==========================================================
-// ====================== Chat Bubble =======================
-// ==========================================================
-;(function ( $, window, document, undefined ) {
-
-    var chatBubble = "chatBubble",
-
-        defaults = {
-            typingSpeed: 40, // speed in words per minute
-            delay: 1000 // delay between adding messages
-        };
-
-    function Plugin( element, options ) {
-        this.element = element;
-        this.options = $.extend( {}, defaults, options) ;
-        this._defaults = defaults;
-        this._name = chatBubble;
-
-        this.init();
-    }
-
-    Plugin.prototype = {
-
-        init: function() {
-            var self = this;
-
-            $(self.element).addClass('cb__list');
-
-            var messages = this.options.messages;
-            var count = messages.length;
-            var typingSpeed = this.options.typingSpeed || this.defaults.typingSpeed;
-            var delay = this.options.delay || this.defaults.delay;
-
-            var i = 0;
-
-            function addMessage() {
-                self.addMessage(self.element, messages[i], typingSpeed).then(function() {
-                    window.setTimeout(function() {
-                        i++;
-                        if (i < count) addMessage();
-                    },delay);
-                });
-            }
-
-            addMessage();
-        },
-
-        addMessage: function(el, message, typingSpeed) {
-
-            var $listItem = $('<li></li>');
-            var $bubble = $('<div class="bubble typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>');
-            var words = message.split(' ').length;
-            var speed = (words / typingSpeed) * 6000;
-
-            if (speed < 1000) speed = 1000;
-            if (speed > 10000) speed = 10000;
-
-            $listItem.html($bubble);
-            $(el).append($listItem);
-
-            return new Promise(function(resolve, reject) {
-                window.setTimeout(function() {
-                    $bubble.html(message).removeClass('typing');
-                    resolve(true);
-                },speed);
-
-            });
-        }
-    };
-
-    $.fn[chatBubble] = function ( options ) {
-        return this.each(function () {
-            if (!$.data(this, "plugin_" + chatBubble)) {
-                $.data(this, "plugin_" + chatBubble,
-                    new Plugin( this, options ));
-            }
-        });
-    };
-
-})( jQuery, window, document );
+};

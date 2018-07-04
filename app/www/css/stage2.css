@@ -36,7 +36,6 @@ body, html {
 .robot-section{
 
     overflow: hidden;
-    pointer-events: none;
     padding: 3rem 0 3rem 2rem;
     /*padding: 3rem 0rem;*/
 }
@@ -53,27 +52,11 @@ body, html {
     margin: 0 auto;
     height: 440px;
     position: relative;
+    padding: 1rem 1rem;
     background: #fff;
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 1;
-
-    /*position: absolute;*/
-    /*top: 10%;*/
-}
-
-.robot-content-top:before {
-    content: "";
-    width: 0px;
-    height: 0px;
-    position: absolute;
-    border-left: 10px solid transparent;
-    border-right: 10px solid #fff;
-    border-top: 10px solid #fff;
-    border-bottom: 10px solid transparent;
-    left: 19px;
-    bottom: -19px;
-
 }
 
 #chartContainer{
@@ -82,8 +65,98 @@ body, html {
     margin: 0 auto;
 }
 
+.msg {
+    display: inline-block;
+    padding: 9px 14px;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 3px;
+    background: #EEE;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    -webkit-transition: width .12s ease-out, height .12s ease-out;
+    transition: width .12s ease-out, height .12s ease-out;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.msg-left .msg {
+    -webkit-border-radius: 0 20px 20px 20px;
+    border-radius: 0 20px 20px 20px;
+}
+
+.msg-bounce-in-left {
+    -webkit-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-animation: msgBounceIn .4s;
+}
+
+@media (max-width: 480px) {
+    .msg {
+        font-size: 15px;
+    }
+}
+
+@-webkit-keyframes msgBounceIn {
+    from, to {
+        -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    from {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    40% {
+        -webkit-transform: scale(1.03);
+        transform: scale(1.03);
+    }
+    75% {
+        -webkit-transform: scale(0.98);
+        transform: scale(0.98);
+    }
+    to {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes msgBounceIn {
+    from, to {
+        -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    from {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    40% {
+        -webkit-transform: scale(1.03);
+        transform: scale(1.03);
+    }
+    75% {
+        -webkit-transform: scale(0.98);
+        transform: scale(0.98);
+    }
+    to {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
 .slide-container {
     text-align: center;
+}
+
+#percentageSign {
+    margin-top: -12px;
+    margin-left: 20px;
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    z-index: 3;
 }
 
 .titleHr {
@@ -219,5 +292,3 @@ h6 {
         color: transparent; }
     100% {
         color: inherit; } }
-
-
