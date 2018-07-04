@@ -44,6 +44,7 @@ body, html {
 
     overflow-x: hidden;
     overflow-y: auto;
+    max-width: 100%;
     /*position: absolute;*/
     /*bottom: 5%;*/
 }
