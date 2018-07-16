@@ -23,7 +23,7 @@ $(window).on('load', function(){
         })
         oneConvRound(convRoundCount);
     });
-    
+
 });
 
 function get_attrs() {
@@ -40,23 +40,24 @@ function get_attrs() {
     return convStyle;
 }
 
-function oneConvRound(index){
+async function oneConvRound(index){
     if (convRoundCount >= roboScriptLst.length)
         return
     robo = roboScriptLst[index];
-    // create a box to holds the waiting dots
-    wait_box = create_chat_box("left", "");
-    // add the wait dots
-    create_wait_animation(wait_box.box);
-    // remove the wait dots after some time and then display all message
-    simulate_delay(wait_box).then(()=> {
-        for (i=0;i<robo.length;i++) {
-            box = create_chat_box("left", robo[i]);
-            add_text(box.box, box.text);
-        }
-        create_options(responseOptsLst[index]);
-        convRoundCount += 1;
-    });
+    for (i=0;i<robo.length;i++) {
+        // add delay before wait dots
+        await timeout(200);
+        // add the wait dots
+        wait_box = create_chat_box("left", "");
+        create_wait_animation(wait_box.box);
+        // remove the wait dots
+        await simulate_delay(wait_box);
+        // display message
+        box = create_chat_box("left", robo[i]);
+        add_text(box.box, box.text);
+    }
+    create_options(responseOptsLst[index]);
+    convRoundCount += 1;
 }
 
 //Create html chat box
@@ -75,12 +76,7 @@ function create_chat_box(side, content) {
 
     }
     container.append(box);
-    return {
-        "box":
-        box,
-        "text":
-        text
-    }
+    return { "box": box, "text": text };
 }
 
 function add_text(box, text) {
@@ -155,7 +151,7 @@ function store_user_input() {
             'stage': 'orientation',
             'online': sessionStorage.getItem('online'),
             'matricNum': sessionStorage.getItem('matricNum'),
-            'studyNum': studyNum,            
+            'studyNum': studyNum,
             'convStyle': sessionStorage.getItem('convStyle'),
             'userInput': userInputs
         })
@@ -165,4 +161,3 @@ function store_user_input() {
     }
 
 }
-
