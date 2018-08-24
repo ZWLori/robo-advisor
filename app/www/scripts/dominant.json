@@ -2,7 +2,7 @@
     "orientation":{
         "greetings":[
             [
-                ["Hello! My name is Max, how are you doing?"], 
+                ["Hello! My name is Max, how are you doing?"],
                 ["I am doing okay", "I'm feeling good"]
             ],
             [
@@ -13,16 +13,17 @@
         ],
         "qna":[
             [
-                ["QA1-D-Q1"],
-                ["QA1-A1", "QA1-A2"]
+                ["I will develop a bespoken portfolio for you using algorithms developed by Wealsome Capital, together with information about your financial situation,. My algorithms will allocate your funds into various ETFs to make up a diversified portfolio that is optimized just for you."],
+                ["Sounds intersting", "Wow, not bad"]
             ],
             [
-                ["QA2-D-Q2"],
-                ["QA2-A1", "QA1-A2"]
+                ["What would you like to know more about me?"],
+                ["What's ETF?", "What's your investment strategy?"]
             ],
             [
-                ["QA3-D-Q3"],
-                ["QA3-A1", "QA3-A2"]
+                ["An ETF, or an exchange-traded funds, is an index-tracking investment vehicle listed on a major exchange. Indices are composed of asset classes, such as stocks or bonds, in a particular segment of the market, such as technology, energy, or real estate. ",
+                    "I will analyse your personal financial situation and risk selection. Firstly, using this information, our investment team and the algorithm will select the most suitable portfolio. Secondly, I also use historical and live data to track market conditions to determine when major economic cycle shifts will occur. Combining these factors, I then design portfolios with medium-to-long-term outlooks that withstand the short-term fluctuations of the markets to yield long-term wealth"],
+                ["Okay I see", "Great, now I understand"]
             ]
         ],
         "task-orientation":[

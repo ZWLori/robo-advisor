@@ -1,5 +1,5 @@
 // False: lab experiment; True: online version
-var online_version = true;
+var online_version = false;
 var chosen_options = [];
 
 $(window).on('load', function () {
@@ -13,7 +13,7 @@ $(window).on('load', function () {
         sessionStorage.setItem('matricNum', (Math.floor(Math.random()*900000) + 100000));
         document.location.href = "./stage1.html";
     }
-    else 
+    else
         $('#attrForm').css('display', 'block');
 
 })
